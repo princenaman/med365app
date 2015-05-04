@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MED365forDoctors.iml" filepath="$PROJECT_DIR$/MED365forDoctors.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/med365-for-doctors.iml" filepath="$PROJECT_DIR$/med365-for-doctors.iml" />
     </modules>
   </component>
 </project>
