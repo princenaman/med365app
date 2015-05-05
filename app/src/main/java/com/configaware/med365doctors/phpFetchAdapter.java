@@ -34,7 +34,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
     private Context context;
     private TextView resultview;
     ProgressDialog progressDialog;
-    String errorFlag,vName,vPassword,vIP,vHospital;
+    String errorFlag,vName,vPassword,vIP,vHospital,ifLocal;
 
     public phpFetchAdapter(Context context,TextView resultView) {
         this.context=context;
@@ -58,6 +58,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         arg1 = (String)params[0];
         arg2 = (String)params[1];
         arg3 = (String)params[2];
+        ifLocal = arg1;
         vName=arg2;
         vPassword=arg3;
 
@@ -128,7 +129,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String result){
         progressDialog.dismiss();
         this.resultview.setText(result);
-        if(!errorFlag.equals("Error"))
+        if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
         {
             dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,context);
             dbAdapter.insertData();
