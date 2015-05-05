@@ -48,7 +48,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         progressDialog = new ProgressDialog(context);
         //progressDialog.setIcon(R.drawable.);
         //progressDialog.setTitle("Login ");
-        progressDialog.setMessage("Keep Calm while we log you in.");
+        progressDialog.setMessage("Logging in.Thand rakh. ");
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
         progressDialog.show();
