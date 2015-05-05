@@ -11,6 +11,12 @@
     <string name="Password">Password</string>
     <string name="App">MED365 Login</string>
     <string name="LoginStatus">Login Status</string>
+    <string name="title_activity_hospital_data">MED365</string>
+
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 
 
 </resources>

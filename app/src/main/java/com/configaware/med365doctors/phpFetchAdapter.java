@@ -1,7 +1,9 @@
 package com.configaware.med365doctors;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -133,6 +135,19 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         {
             dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,context);
             dbAdapter.insertData();
+
+            Intent intent =new Intent(context, HospitalData.class);
+            intent.putExtra("IP",vIP);
+            context.startActivity(intent);
+            ((Activity)context).finish();
         }
+        else if (!errorFlag.equals("Error"))
+        {
+            Intent intent =new Intent(context, HospitalData.class);
+            intent.putExtra("IP",vIP);
+            context.startActivity(intent);
+            ((Activity)context).finish();
+        }
+
     }
 }
