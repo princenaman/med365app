@@ -18,6 +18,7 @@
     <string name="title_section2">IPD</string>
     <string name="title_section3">TPA</string>
     <string name="title_section4">LIC</string>
+    <string name="date">Select Date</string>
 
 
 </resources>

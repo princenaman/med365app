@@ -130,7 +130,7 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
 
             switch (position) {
                 case 0:
-                    return new FragmentOPD(0);
+                    return new FragmentOPD(0,HospitalData.this);
                 case 1:
                     return new FragmentIPD();
                 case 2:

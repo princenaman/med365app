@@ -2,11 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/opdDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:hint="@string/date"
+        android:gravity="center_horizontal" />
+
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:text="OPD"
         android:id="@+id/opdText"
         android:gravity="center_horizontal"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/opdDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
