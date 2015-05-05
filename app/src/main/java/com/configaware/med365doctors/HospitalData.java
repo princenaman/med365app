@@ -132,11 +132,13 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
 
             switch (position) {
                 case 0:
-                    return new FragmentPassword();
+                    return new FragmentOPD();
                 case 1:
-                    return new FragmentPicture();
+                    return new FragmentIPD();
                 case 2:
-                    return new FragmentSettings();
+                    return new FragmentTPA();
+                case 3:
+                    return new FragmentLIC();
 
             }
             return null;
@@ -145,7 +147,7 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return 4;
         }
 
