@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,6 +21,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -36,7 +38,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
     private Context context;
     private TextView resultview;
     ProgressDialog progressDialog;
-    String errorFlag,vName,vPassword,vIP,vHospital,ifLocal;
+    String errorFlag=null,vName,vPassword,vIP,vHospital,ifLocal=null;
 
     public phpFetchAdapter(Context context,TextView resultView) {
         this.context=context;
@@ -78,6 +80,8 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             HttpConnectionParams.setConnectionTimeout(params1, 15000);
             HttpClient httpclient = new DefaultHttpClient(params1);
             HttpResponse response = httpclient.execute(httppost);
+            if(response.getStatusLine().getStatusCode() != 200) //which means there is connection
+                return null;
             HttpEntity entity1 = response.getEntity();
             isr = entity1.getContent();
         }
@@ -119,23 +123,34 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
 
             return (s);
 
-        } catch (Exception e) {
+        } catch (JSONException e) {
             // TODO: handle exception
             Log.e("log_tag", "Error Parsing Data "+e.toString());
+            return null;
         }
 
-        return null;
+
     }
 
     @Override
     protected void onPostExecute(String result){
         progressDialog.dismiss();
-        this.resultview.setText(result);
-        if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
+        if(result==null){
+            this.resultview.setText("Error in Connection");
+            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
+        }
+        else
+            this.resultview.setText(result);
+
+        if (errorFlag==null){
+            this.resultview.setText("Error in Connection");
+            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
+        }
+        else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
         {
+            this.resultview.setText(result);
             dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,context);
             dbAdapter.insertData();
-
             Intent intent =new Intent(context, HospitalData.class);
             intent.putExtra("IP",vIP);
             context.startActivity(intent);
@@ -143,10 +158,16 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         }
         else if (!errorFlag.equals("Error"))
         {
+            this.resultview.setText(result);
             Intent intent =new Intent(context, HospitalData.class);
             intent.putExtra("IP",vIP);
             context.startActivity(intent);
             ((Activity)context).finish();
+        }
+        else
+        {
+            this.resultview.setText("Error in Connection");
+            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
         }
 
     }
