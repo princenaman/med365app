@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -27,10 +28,11 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     private int sectionNumber;
-    private EditText opdDate;
-    private DatePickerDialog opdDateDialog;
+    private EditText opdDate,opdToDate;
+    private DatePickerDialog opdDateDialog,opdToDateDialog;
     private SimpleDateFormat dateFormatter;
     private Context context;
+    private Spinner spinner;
 
     public FragmentOPD() {
     }
@@ -66,6 +68,8 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
         opdDate = (EditText) rootView.findViewById(R.id.opdDate);
         opdDate.setInputType(InputType.TYPE_NULL);
         opdDate.requestFocus();
+        opdToDate = (EditText) rootView.findViewById(R.id.opdToDate);
+        opdToDate.setInputType(InputType.TYPE_NULL);
         setDateTimeField();
 
         return rootView;
@@ -73,6 +77,7 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
 
     private void setDateTimeField() {
         opdDate.setOnClickListener(this);
+        opdToDate.setOnClickListener(this);
 
         Calendar newCalendar = Calendar.getInstance();
         opdDateDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
@@ -84,12 +89,26 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+        opdToDateDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                opdToDate.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
     }
 
     @Override
     public void onClick(View view) {
         if(view == opdDate) {
             opdDateDialog.show();
+            opdToDate.requestFocus();
+        }
+        else if(view == opdToDate) {
+            opdToDateDialog.show();
         }
     }
 }

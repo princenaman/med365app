@@ -2,22 +2,60 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/opdDate"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".5"
-        android:hint="@string/date"
-        android:gravity="center_horizontal" />
+        android:id="@+id/datePickers">
+
+        <EditText
+            android:id="@+id/opdDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/date"
+            android:gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/opdToDate"
+            android:layout_weight="1"
+            android:hint="@string/opdToDate"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectSearch"
+        android:layout_below="@+id/datePickers">
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/typeSelect"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:prompt="@string/spinner_title"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/opdButton"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:text="OPD"
         android:id="@+id/opdText"
         android:gravity="center_horizontal"
         android:textSize="20sp"
-        android:layout_below="@+id/opdDate"
+        android:layout_below="@+id/selectSearch"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
