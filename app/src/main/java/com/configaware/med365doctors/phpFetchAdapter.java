@@ -58,18 +58,25 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String arg1,arg2,arg3;
+        String arg1,arg2,arg3,arg4 = "blank";
         arg1 = (String)params[0];
         arg2 = (String)params[1];
         arg3 = (String)params[2];
+        if(params.length>3 )
+            arg4 = (String)params[3];
         ifLocal = arg1;
         vName=arg2;
         vPassword=arg3;
 
         String result = "";
+        String url="http://54.66.224.33/med365app/login.php";
         InputStream isr = null;
         try{
-            String url="http://54.66.224.33/med365app/login.php";
+            if (arg1.equals("opd")){
+                url="http://54.66.224.33/med365app/opd.php";
+            }
+
+
             HttpPost httppost = new HttpPost(url); //YOUR PHP SCRIPT ADDRESS
 
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
@@ -145,6 +152,9 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         if (errorFlag==null){
             this.resultview.setText("Error in Connection");
             Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
+        }
+        else if (ifLocal.equals("opd")){
+            this.resultview.setText(result);
         }
         else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
         {

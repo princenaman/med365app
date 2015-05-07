@@ -9,19 +9,23 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * Created by naman on 5/5/2015.
  */
-public class FragmentOPD extends Fragment implements View.OnClickListener {
+public class FragmentOPD extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -33,6 +37,8 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
     private SimpleDateFormat dateFormatter;
     private Context context;
     private Spinner spinner;
+    private Button button;
+    private TextView opdResult;
 
     public FragmentOPD() {
     }
@@ -60,9 +66,6 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
     {
         View rootView = inflater.inflate(R.layout.fragment_opd, container, false);
 
-        TextView textView = (TextView) rootView.findViewById(R.id.opdText);
-        textView.setText("OPD "+(sectionNumber+1));
-
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
         opdDate = (EditText) rootView.findViewById(R.id.opdDate);
@@ -71,6 +74,14 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
         opdToDate = (EditText) rootView.findViewById(R.id.opdToDate);
         opdToDate.setInputType(InputType.TYPE_NULL);
         setDateTimeField();
+
+        spinner = (Spinner) rootView.findViewById(R.id.typeSelect);
+        spinner.setOnItemSelectedListener(this);
+
+        button = (Button) rootView.findViewById(R.id.opdButton);
+        button.setOnClickListener(this);
+
+        opdResult = (TextView) rootView.findViewById(R.id.opdText);
 
         return rootView;
     }
@@ -110,5 +121,22 @@ public class FragmentOPD extends Fragment implements View.OnClickListener {
         else if(view == opdToDate) {
             opdToDateDialog.show();
         }
+        else if (view == button){
+            String arg1 = "opd";
+            String arg2 = opdToDate.getText().toString();
+            String arg3 = String.valueOf(spinner.getSelectedItem());
+            String arg4 = opdDate.getText().toString();
+            new phpFetchAdapter(context,opdResult).execute(arg1,arg2,arg3,arg4);
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

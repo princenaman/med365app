@@ -38,12 +38,13 @@
             android:id="@+id/typeSelect"
             android:layout_weight="1"
             android:spinnerMode="dropdown"
+            android:entries="@array/type"
             android:prompt="@string/spinner_title"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="@string/search"
             android:id="@+id/opdButton"
             android:layout_weight="1" />
     </LinearLayout>
@@ -51,7 +52,6 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="OPD"
         android:id="@+id/opdText"
         android:gravity="center_horizontal"
         android:textSize="20sp"

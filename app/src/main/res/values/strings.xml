@@ -21,6 +21,12 @@
     <string name="date">From</string>
     <string name="opdToDate">To</string>
     <string name="spinner_title">Select Type</string>
+    <string-array name="type">
+        <item>Cash</item>
+        <item>Card</item>
+        <item>Credit</item>
+    </string-array>
+    <string name="search">Search</string>
 
 
 </resources>
