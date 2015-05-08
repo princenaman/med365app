@@ -72,7 +72,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         String url="http://54.66.224.33/med365app/login.php";
         InputStream isr = null;
         try{
-            if (arg1.equals("opd")){
+            if (arg1.equals("opd")||arg1.equals("ipd")){
                 url="http://54.66.224.33/med365app/opd.php";
             }
 
@@ -153,7 +153,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             this.resultview.setText("Error in Connection");
             Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
         }
-        else if (ifLocal.equals("opd")){
+        else if (ifLocal.equals("opd")||ifLocal.equals("ipd")){
             this.resultview.setText(result);
         }
         else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))

@@ -22,8 +22,9 @@
     <string name="opdToDate">To</string>
     <string name="spinner_title">Select Type</string>
     <string-array name="type">
+        <item>All Payment</item>
         <item>Cash</item>
-        <item>Card</item>
+        <item>Cheque</item>
         <item>Credit</item>
     </string-array>
     <string name="search">Search</string>
