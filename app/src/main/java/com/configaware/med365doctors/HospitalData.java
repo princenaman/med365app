@@ -134,7 +134,7 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
                 case 1:
                     return new FragmentIPD(1,HospitalData.this);
                 case 2:
-                    return new FragmentTPA(2);
+                    return new FragmentTPA(2,HospitalData.this);
                 case 3:
                     return new FragmentLIC(3);
 
