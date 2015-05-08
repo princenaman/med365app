@@ -35,6 +35,7 @@ import java.util.List;
  */
 public class phpFetchAdapter extends AsyncTask<String,Void,String> {
 
+    private String activityName = "";
     private Context context;
     private TextView resultview;
     ProgressDialog progressDialog;
@@ -45,15 +46,20 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         this.resultview=resultView;
     }
 
+    public phpFetchAdapter(Context context, TextView resultView, String activityName) {
+        this.context=context;
+        this.resultview=resultView;
+        this.activityName = activityName;
+    }
+
     protected void onPreExecute(){
         super.onPreExecute();
         progressDialog = new ProgressDialog(context);
-        //progressDialog.setIcon(R.drawable.);
-        //progressDialog.setTitle("Login ");
         progressDialog.setMessage("Please wait while we connect!!");
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
-        progressDialog.show();
+        if(!activityName.equals("Splash"))
+            progressDialog.show();
     }
 
     @Override
@@ -87,7 +93,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             HttpConnectionParams.setConnectionTimeout(params1, 15000);
             HttpClient httpclient = new DefaultHttpClient(params1);
             HttpResponse response = httpclient.execute(httppost);
-            if(response.getStatusLine().getStatusCode() != 200) //which means there is connection
+            if(response.getStatusLine().getStatusCode() != 200) //which means there no is connection
                 return null;
             HttpEntity entity1 = response.getEntity();
             isr = entity1.getContent();
@@ -185,6 +191,5 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             ((Activity)context).finish();
             Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
         }
-
     }
 }

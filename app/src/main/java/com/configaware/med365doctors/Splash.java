@@ -33,20 +33,20 @@ public class Splash extends Activity {
                 TextView resultView = (TextView) findViewById(R.id.splashText);
 
                 do{
-                    new phpFetchAdapter(Splash.this,resultView).execute("Splash", result.getString(1), result.getString(2));
+                    new phpFetchAdapter(Splash.this,resultView,"Splash").execute("Splash", result.getString(1), result.getString(2));
                     Log.e("Local Data", result.getString(1)+" "+result.getString(2));
                 }while (result.moveToNext());
             }
         }
         else {
-         new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                Intent mainIntent = new Intent(Splash.this,MainActivity.class);
-                Splash.this.startActivity(mainIntent);
-                Splash.this.finish();
-            }
-        }, SPLASH_DISPLAY_LENGTH);
+             new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    Intent mainIntent = new Intent(Splash.this,MainActivity.class);
+                    Splash.this.startActivity(mainIntent);
+                    Splash.this.finish();
+                }
+            }, SPLASH_DISPLAY_LENGTH);
         }
     }
 }
