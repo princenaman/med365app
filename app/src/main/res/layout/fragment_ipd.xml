@@ -39,7 +39,8 @@
             android:layout_weight="1"
             android:spinnerMode="dropdown"
             android:entries="@array/type"
-            android:prompt="@string/spinner_title"/>
+            android:prompt="@string/spinner_title"
+            android:gravity="center_horizontal" />
 
         <Button
             android:layout_width="0dp"
