@@ -152,6 +152,9 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         if (errorFlag==null){
             this.resultview.setText("Error in Connection");
             Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
+            Intent intent =new Intent(context, MainActivity.class);
+            context.startActivity(intent);
+            ((Activity)context).finish();
         }
         else if (ifLocal.equals("opd") || ifLocal.equals("ipd") || ifLocal.equals("tpa") || ifLocal.equals("lic")){
             this.resultview.setText(result);
@@ -177,6 +180,9 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         else
         {
             this.resultview.setText("Error in Connection");
+            Intent intent =new Intent(context, MainActivity.class);
+            context.startActivity(intent);
+            ((Activity)context).finish();
             Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
         }
 

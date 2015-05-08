@@ -4,10 +4,7 @@ Edits by shubham
  */
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -31,22 +28,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         resultView = (TextView) findViewById(R.id.result);
         login = (Button) findViewById(R.id.login);
         login.setOnClickListener(this);
-         dataBaseAdapter mydb=new dataBaseAdapter(this);
-        if(!mydb.isEmpty())
-        {
-            Log.e("isEmpty", "Not Empty");
-            Cursor result = mydb.fetchData();
-            if (result!=null){
-                result.moveToFirst();
-
-                do{
-                    new phpFetchAdapter(this,resultView).execute("Local Login",result.getString(1),result.getString(2));
-                    Log.e("Local Data", result.getString(1)+" "+result.getString(2));
-                }while (result.moveToNext());
-            }
-        }
-
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,7 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             String arg1 = "login";
             String arg2 = usernameField.getText().toString();
             String arg3 = passwordField.getText().toString();
-            new phpFetchAdapter(this,resultView).execute(arg1,arg2,arg3);
+            new phpFetchAdapter(MainActivity.this,resultView).execute(arg1, arg2, arg3);
             //resultView.setText(result);
             //getData();
         }

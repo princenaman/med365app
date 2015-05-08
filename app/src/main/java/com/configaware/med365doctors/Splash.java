@@ -1,15 +1,12 @@
 package com.configaware.med365doctors;
 
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
-
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.widget.TextView;
 
 public class Splash extends Activity {
 
@@ -24,14 +21,32 @@ public class Splash extends Activity {
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
-        new Handler().postDelayed(new Runnable(){
+
+        dataBaseAdapter mydb=new dataBaseAdapter(this);
+        if(!mydb.isEmpty())
+        {
+            Log.e("isEmpty", "Not Empty");
+            Cursor result = mydb.fetchData();
+            if (result!=null){
+                result.moveToFirst();
+
+                TextView resultView = (TextView) findViewById(R.id.splashText);
+
+                do{
+                    new phpFetchAdapter(Splash.this,resultView).execute("Splash", result.getString(1), result.getString(2));
+                    Log.e("Local Data", result.getString(1)+" "+result.getString(2));
+                }while (result.moveToNext());
+            }
+        }
+        else {
+         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
                 Intent mainIntent = new Intent(Splash.this,MainActivity.class);
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+        }
     }
 }
