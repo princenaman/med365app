@@ -38,7 +38,7 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
     private Context context;
     private TextView resultview;
     ProgressDialog progressDialog;
-    String errorFlag=null,vName,vPassword,vIP,vHospital,ifLocal=null;
+    String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,ifLocal=null;
 
     public reportCollectionAdapter(Context context,TextView resultView) {
         this.context=context;
@@ -156,7 +156,7 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
         else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
         {
             this.resultview.setText(result);
-            dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,context);
+            dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,vPartnerKey, context);
             dbAdapter.insertData();
             Intent intent =new Intent(context, HospitalData.class);
             intent.putExtra("IP",vIP);

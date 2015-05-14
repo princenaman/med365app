@@ -38,7 +38,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
     private Context context;
     private TextView resultview;
     ProgressDialog progressDialog;
-    String errorFlag=null,vName,vPassword,vIP,vHospital,ifLocal=null;
+    String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,ifLocal=null;
 
     public phpFetchAdapter(Context context,TextView resultView) {
         this.context=context;
@@ -124,10 +124,12 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
                 JSONObject json = jArray.getJSONObject(i);
                 s = s +
                         ""+json.getString("GLOBAL_IP")+"\n"+
+                        ""+json.getString("PARTNER_KEY")+"\n"+
                         ""+json.getString("PARTNER_COMPANY")+"\n\n";
                 errorFlag=json.getString("PARTNER_COMPANY");
                 vHospital = json.getString("PARTNER_COMPANY");
                 vIP = json.getString("GLOBAL_IP");
+                vPartnerKey=json.getString("PARTNER_COMPANY");
             }
 
             return (s);
@@ -162,7 +164,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
         {
             this.resultview.setText(result);
-            dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,context);
+            dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,vPartnerKey,context);
             dbAdapter.insertData();
             Intent intent =new Intent(context, HospitalData.class);
             intent.putExtra("IP",vIP);
