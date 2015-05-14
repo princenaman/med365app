@@ -56,8 +56,20 @@
         android:id="@+id/opdText"
         android:gravity="center_horizontal"
         android:textSize="20sp"
-        android:layout_below="@+id/selectSearch"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/selectSearch"
+        android:maxLines="300"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/collectionList"
+        android:layout_below="@+id/selectSearch"
+        android:layout_centerHorizontal="true"
+        android:divider="#000000"
+        android:dividerHeight="4px"/>
 
 </RelativeLayout>

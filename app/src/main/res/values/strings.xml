@@ -11,21 +11,22 @@
     <string name="Password">Password</string>
     <string name="App">MED365 Login</string>
     <string name="LoginStatus">Login Status</string>
-    <string name="title_activity_hospital_data">Day Collections</string>
+    <string name="title_activity_hospital_data">Reports</string>
 
 
-    <string name="title_section1">OPD</string>
-    <string name="title_section2">IPD</string>
-    <string name="title_section3">TPA</string>
-    <string name="title_section4">LIC</string>
+    <string name="title_section1">Collection</string>
+    <string name="title_section2">Invoice</string>
+    <string name="title_section3">Sales</string>
+    <string name="title_section4">Day</string>
     <string name="date">From</string>
     <string name="opdToDate">To</string>
     <string name="spinner_title">Select Type</string>
     <string-array name="type">
-        <item>All Payment</item>
+        <item>All Modes</item>
         <item>Cash</item>
         <item>Cheque</item>
         <item>Credit</item>
+        <item>Mediclaim</item>
     </string-array>
     <string name="search">Search</string>
 

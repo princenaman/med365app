@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +34,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -37,12 +44,14 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
 
     private Context context;
     private TextView resultview;
+    private ListView listView;
     ProgressDialog progressDialog;
     String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,ifLocal=null;
-
-    public reportCollectionAdapter(Context context,TextView resultView) {
+    Cursor cursor;
+    public reportCollectionAdapter(Context context, TextView resultView, ListView listView) {
         this.context=context;
         this.resultview=resultView;
+        this.listView=listView;
     }
 
     protected void onPreExecute(){
@@ -52,6 +61,14 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
         progressDialog.show();
+        dataBaseAdapter dbAdapter =new dataBaseAdapter(context);
+        cursor = dbAdapter.fetchData();
+        if (cursor.moveToFirst()){
+            do{
+                vPartnerKey=cursor.getString(cursor.getColumnIndex("partner_key"));
+                Log.e("Column Key",vPartnerKey);
+            }while(cursor.moveToNext());
+        }
     }
 
     @Override
@@ -77,7 +94,7 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
             nameValuePairs.add(new BasicNameValuePair("dateFrom", arg2));
             nameValuePairs.add(new BasicNameValuePair("dateTo", arg3));
-            nameValuePairs.add(new BasicNameValuePair("payment_type", arg3));
+            nameValuePairs.add(new BasicNameValuePair("partnerKey", vPartnerKey));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpParams params1 = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(params1, 15000);
@@ -104,81 +121,54 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
 
             result=sb.toString();
             Log.e("Result", "Data: " + sb.toString());
+            return result;
         }
         catch(Exception e){
             Log.e("log_tag", "Error converting result "+e.toString());
         }
-
-        //parse json data
-        try {
-            String s = "";
-            JSONArray jArray = new JSONArray(result);
-
-            for(int i=0; i<jArray.length();i++){
-                JSONObject json = jArray.getJSONObject(i);
-                s = s +
-                        ""+json.getString("DATE")+"\n"+
-                        ""+json.getString("GROUP_SUM")+"\n"+
-                        ""+json.getString("GROUP_DESCRIPTION")+"\n\n";
-                //errorFlag=json.getString("PARTNER_COMPANY");
-
-            }
-
-            return (s);
-
-        } catch (JSONException e) {
-            // TODO: handle exception
-            Log.e("log_tag", "Error Parsing Data "+e.toString());
-            return null;
-        }
+        return null;
     }
 
     @Override
     protected void onPostExecute(String result){
         progressDialog.dismiss();
+        final ArrayList <HashMap<String,String>> collectionList=new ArrayList<HashMap<String, String>>();
         if(result==null){
             this.resultview.setText("Error in Connection");
             Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show();
         }
-        else
+        else {
             this.resultview.setText(result);
+            //parse json data
+            try {
 
-        if (errorFlag==null){
-            this.resultview.setText("Error in Connection");
-            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
-            Intent intent =new Intent(context, MainActivity.class);
-            context.startActivity(intent);
-            ((Activity)context).finish();
-        }
-        else if (ifLocal.equals("opd") || ifLocal.equals("ipd") || ifLocal.equals("tpa") || ifLocal.equals("lic")){
-            this.resultview.setText(result);
-        }
-        else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
-        {
-            this.resultview.setText(result);
-            dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,vPartnerKey, context);
-            dbAdapter.insertData();
-            Intent intent =new Intent(context, HospitalData.class);
-            intent.putExtra("IP",vIP);
-            context.startActivity(intent);
-            ((Activity)context).finish();
-        }
-        else if (!errorFlag.equals("Error"))
-        {
-            this.resultview.setText(result);
-            Intent intent =new Intent(context, HospitalData.class);
-            intent.putExtra("IP",vIP);
-            context.startActivity(intent);
-            ((Activity)context).finish();
-        }
-        else
-        {
-            this.resultview.setText("Error in Connection");
-            Intent intent =new Intent(context, MainActivity.class);
-            context.startActivity(intent);
-            ((Activity)context).finish();
-            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
-        }
+                JSONArray jArray = new JSONArray(result);
 
+                for(int i=0; i<jArray.length();i++){
+                    JSONObject json = jArray.getJSONObject(i);
+                    String date = json.getString("ORDER_DATE");
+                    String amount = json.getString("AMOUNT");
+                    String orders = json.getString("ORDER_NUMBER");
+
+                    HashMap<String,String> hashMap=new HashMap<String,String>();
+                    hashMap.put("DATE",date);
+                    hashMap.put("AMOUNT", amount);
+                    hashMap.put("ORDERS",orders);
+                    collectionList.add(hashMap);
+                    ListAdapter listAdapter=new SimpleAdapter(context,collectionList,R.layout.list_item,new String[]{"DATE","AMOUNT","ORDERS"},new int[]{R.id.listDate,R.id.listAmount,R.id.listOrderNum});
+                    listView.setAdapter(listAdapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Toast.makeText(context,""+collectionList.get(+position).get("DATE"),Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+            } catch (JSONException e) {
+                // TODO: handle exception
+                Log.e("log_tag", "Error Parsing Data "+e.toString());
+            }
+        }
     }
 }
