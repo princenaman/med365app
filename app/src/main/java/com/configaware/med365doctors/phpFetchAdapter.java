@@ -35,7 +35,6 @@ import java.util.List;
  */
 public class phpFetchAdapter extends AsyncTask<String,Void,String> {
 
-    private String activityName = "";
     private Context context;
     private TextView resultview;
     ProgressDialog progressDialog;
@@ -46,20 +45,15 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         this.resultview=resultView;
     }
 
-    public phpFetchAdapter(Context context, TextView resultView, String activityName) {
-        this.context=context;
-        this.resultview=resultView;
-        this.activityName = activityName;
-    }
-
     protected void onPreExecute(){
         super.onPreExecute();
         progressDialog = new ProgressDialog(context);
+        //progressDialog.setIcon(R.drawable.);
+        //progressDialog.setTitle("Login ");
         progressDialog.setMessage("Please wait while we connect!!");
         progressDialog.setIndeterminate(false);
         progressDialog.setCancelable(false);
-        if(!activityName.equals("Splash"))
-            progressDialog.show();
+        progressDialog.show();
     }
 
     @Override
@@ -75,11 +69,13 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         vPassword=arg3;
 
         String result = "";
-        String url="http://54.66.224.33/med365app/login.php";
+
+        String url="http://59.89.123.119/med365app/login.php";
         InputStream isr = null;
         try{
-            if (arg1.equals("opd") || arg1.equals("ipd") || arg1.equals("tpa") || arg1.equals("lic")){
-                url="http://54.66.224.33/med365app/opd.php";
+            if (arg1.equals("opd") || arg1.equals("ipd") || arg1.equals("tpa") || arg1.equals("lic"))
+            {
+                url="http://59.89.123.119/med365app/opd.php";
             }
 
 
@@ -93,7 +89,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             HttpConnectionParams.setConnectionTimeout(params1, 15000);
             HttpClient httpclient = new DefaultHttpClient(params1);
             HttpResponse response = httpclient.execute(httppost);
-            if(response.getStatusLine().getStatusCode() != 200) //which means there no is connection
+            if(response.getStatusLine().getStatusCode() != 200) //which means there is no connection
                 return null;
             HttpEntity entity1 = response.getEntity();
             isr = entity1.getContent();
@@ -127,11 +123,11 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             for(int i=0; i<jArray.length();i++){
                 JSONObject json = jArray.getJSONObject(i);
                 s = s +
-                        ""+json.getString("doctor_hospital")+"\n"+
-                        ""+json.getString("doctor_ip")+"\n\n";
-                errorFlag=json.getString("doctor_hospital");
-                vHospital = json.getString("doctor_hospital");
-                vIP = json.getString("doctor_ip");
+                        ""+json.getString("GLOBAL_IP")+"\n"+
+                        ""+json.getString("PARTNER_COMPANY")+"\n\n";
+                errorFlag=json.getString("PARTNER_COMPANY");
+                vHospital = json.getString("PARTNER_COMPANY");
+                vIP = json.getString("GLOBAL_IP");
             }
 
             return (s);
@@ -141,9 +137,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             Log.e("log_tag", "Error Parsing Data "+e.toString());
             return null;
         }
-
-
-    }
+ }
 
     @Override
     protected void onPostExecute(String result){
@@ -191,5 +185,6 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             ((Activity)context).finish();
             Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
         }
+
     }
 }

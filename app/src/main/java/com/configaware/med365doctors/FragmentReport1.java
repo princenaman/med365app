@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by naman on 5/5/2015.
+ * Created by Shubham on 5/5/2015.
  */
-public class FragmentOPD extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class FragmentReport1 extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -40,15 +40,15 @@ public class FragmentOPD extends Fragment implements View.OnClickListener, Adapt
     private Button button;
     private TextView opdResult;
 
-    public FragmentOPD() {
+    public FragmentReport1() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static FragmentOPD newInstance(int sectionNumber) {
-        FragmentOPD fragment = new FragmentOPD();
+    public static FragmentReport1 newInstance(int sectionNumber) {
+        FragmentReport1 fragment = new FragmentReport1();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -56,7 +56,7 @@ public class FragmentOPD extends Fragment implements View.OnClickListener, Adapt
     }
 
     @SuppressLint("ValidFragment")
-    public FragmentOPD(int sectionNumber,Context context) {
+    public FragmentReport1(int sectionNumber,Context context) {
         this.sectionNumber = sectionNumber;
         this.context = context;
     }
@@ -64,7 +64,7 @@ public class FragmentOPD extends Fragment implements View.OnClickListener, Adapt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.fragment_opd, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_report1, container, false);
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
@@ -122,11 +122,11 @@ public class FragmentOPD extends Fragment implements View.OnClickListener, Adapt
             opdToDateDialog.show();
         }
         else if (view == button){
-            String arg1 = "opd";
+            String arg1 = "collection";
             String arg2 = opdToDate.getText().toString();
             String arg3 = String.valueOf(spinner.getSelectedItem());
             String arg4 = opdDate.getText().toString();
-            new phpFetchAdapter(context,opdResult).execute(arg1,arg2,arg3,arg4);
+            new reportCollectionAdapter(context,opdResult).execute(arg1,arg2,arg3,arg4);
         }
     }
 

@@ -47,8 +47,8 @@ public class FragmentIPD extends Fragment implements View.OnClickListener, Adapt
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static FragmentOPD newInstance(int sectionNumber) {
-        FragmentOPD fragment = new FragmentOPD();
+    public static FragmentIPD newInstance(int sectionNumber) {
+        FragmentIPD fragment = new FragmentIPD();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
