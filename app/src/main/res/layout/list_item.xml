@@ -8,27 +8,65 @@
         android:layout_height="wrap_content"
         android:id="@+id/datemoney">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/listDate"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:typeface="serif"
-            android:paddingLeft="10dp"
-            android:textColor="#ff000000" />
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/listAmount"
-            android:layout_weight="1"
-            android:textSize="15sp"
-            android:typeface="serif"
-            android:paddingLeft="10dp"
-            android:textColor="#ff000000" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text="New Text"
+                android:id="@+id/listDate"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:typeface="serif"
+                android:paddingLeft="10dp"
+                android:textColor="#ff000000"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="false"
+                android:layout_toRightOf="@+id/calenderIcon"
+                android:layout_toEndOf="@+id/calenderIcon" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/calenderIcon"
+                android:src="@mipmap/appointment"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text="New Text"
+                android:id="@+id/listAmount"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:typeface="serif"
+                android:paddingLeft="10dp"
+                android:textColor="#ff000000"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/amountIcon"
+                android:layout_toEndOf="@+id/amountIcon" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/amountIcon"
+                android:src="@mipmap/money"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
     </LinearLayout>
 
     <TextView
@@ -37,9 +75,8 @@
         android:text="New Text"
         android:id="@+id/listOrderNum"
         android:layout_below="@+id/datemoney"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:typeface="serif"
-        android:gravity="center_horizontal"
         android:textColor="#ff000000"
         android:paddingBottom="5dp" />
 </RelativeLayout>

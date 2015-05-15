@@ -1,9 +1,7 @@
 package com.configaware.med365doctors;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -85,7 +83,7 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
 
         String result = "";
 
-        String url="http://192.168.1.105/med365app/data.php";
+        String url="http://54.66.144.238/med365app/getcollectionreport.php";
         InputStream isr = null;
         try{
 
@@ -160,7 +158,7 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(context,""+collectionList.get(+position).get("DATE"),Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"Order Numbers on "+collectionList.get(+position).get("DATE"),Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

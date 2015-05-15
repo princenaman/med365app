@@ -70,12 +70,12 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
 
         String result = "";
 
-        String url="http://59.89.123.40/med365app/login.php";
+        String url="http://54.66.144.238/med365app/login.php";
         InputStream isr = null;
         try{
             if (arg1.equals("opd") || arg1.equals("ipd") || arg1.equals("tpa") || arg1.equals("lic"))
             {
-                url="http://59.89.123.119/med365app/opd.php";
+                url="http://54.66.144.238/med365app/opd.php";
             }
 
 
