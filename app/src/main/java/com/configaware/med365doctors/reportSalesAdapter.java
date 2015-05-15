@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Created by Shubham on 5/15/2015.
  */
-public class reportDayAdapter extends AsyncTask<String,Void,String>{
+public class reportSalesAdapter extends AsyncTask<String,Void,String>{
 
     private Context context;
     private TextView resultview;
@@ -46,7 +46,7 @@ public class reportDayAdapter extends AsyncTask<String,Void,String>{
     ProgressDialog progressDialog;
     String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,ifLocal=null;
     Cursor cursor;
-    public reportDayAdapter(Context context, TextView resultView, ListView listView) {
+    public reportSalesAdapter(Context context, TextView resultView, ListView listView) {
         this.context=context;
         this.resultview=resultView;
         this.listView=listView;
@@ -83,7 +83,7 @@ public class reportDayAdapter extends AsyncTask<String,Void,String>{
 
         String result = "";
 
-        String url="http://54.66.144.238/med365app/getdayreport.php";
+        String url="http://54.66.144.238/med365app/getsalesreport.php";
         InputStream isr = null;
         try{
 
@@ -144,26 +144,23 @@ public class reportDayAdapter extends AsyncTask<String,Void,String>{
 
                 for(int i=0; i<jArray.length();i++){
                     JSONObject json = jArray.getJSONObject(i);
-                    String order = json.getString("ORDER_NUMBER");
                     String date = json.getString("ORDER_DATE");
-                    String name=json.getString("CUSTOMER_NAME");
-                    String description=json.getString("ORDER_DESCRIPTION");
-                    String amountPaid = json.getString("AMOUNT");
+                    String orders = json.getString("order_number");
                     String orderTotal=json.getString("ORDER_TOTAL");
+                    String amountPaid = json.getString("amount");
+
 
 
 
 
                     HashMap<String,String> hashMap=new HashMap<String,String>();
                     hashMap.put("DATE",date);
-                    hashMap.put("ORDER_NUMBER",order);
-                    hashMap.put("CUSTOMER",name);
-                    hashMap.put("DESCRIPTION",description);
+                    hashMap.put("ORDER_NUMBER",orders);
                     hashMap.put("TOTAL_AMOUNT", orderTotal);
                     hashMap.put("AMOUNT_PAID", amountPaid);
 
                     collectionList.add(hashMap);
-                    ListAdapter listAdapter=new SimpleAdapter(context,collectionList,R.layout.list_item_day,new String[]{"DATE","ORDER_NUMBER","CUSTOMER","DESCRIPTION","TOTAL_AMOUNT","AMOUNT_PAID"},new int[]{R.id.listDate2,R.id.listOrder,R.id.listName,R.id.listDescription,R.id.listToalAmount,R.id.listAmountPaid});
+                    ListAdapter listAdapter=new SimpleAdapter(context,collectionList,R.layout.list_item_sale,new String[]{"DATE","TOTAL_AMOUNT","AMOUNT_PAID","ORDER_NUMBER"},new int[]{R.id.listDate3,R.id.listOrderTotal,R.id.listAmount,R.id.listOrderSales});
                     listView.setAdapter(listAdapter);
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

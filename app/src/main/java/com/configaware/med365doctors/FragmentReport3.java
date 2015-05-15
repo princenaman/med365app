@@ -73,23 +73,23 @@ public class FragmentReport3 extends Fragment implements View.OnClickListener, A
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-        opdDate = (EditText) rootView.findViewById(R.id.opdDate2);
+        opdDate = (EditText) rootView.findViewById(R.id.opdDate3);
         opdDate.setInputType(InputType.TYPE_NULL);
         opdDate.requestFocus();
-        opdToDate = (EditText) rootView.findViewById(R.id.opdToDate2);
+        opdToDate = (EditText) rootView.findViewById(R.id.opdToDate3);
         opdToDate.setInputType(InputType.TYPE_NULL);
         setDateTimeField();
 
-        spinner = (Spinner) rootView.findViewById(R.id.typeSelect2);
+        spinner = (Spinner) rootView.findViewById(R.id.typeSelect3);
         spinner.setOnItemSelectedListener(this);
 
-        button = (Button) rootView.findViewById(R.id.opdButton2);
+        button = (Button) rootView.findViewById(R.id.opdButton3);
         button.setOnClickListener(this);
 
-        opdResult = (TextView) rootView.findViewById(R.id.opdText2);
+        opdResult = (TextView) rootView.findViewById(R.id.opdText3);
         opdResult.setMovementMethod(new ScrollingMovementMethod());
 
-        listView = (ListView) rootView.findViewById(R.id.collectionList2);
+        listView = (ListView) rootView.findViewById(R.id.collectionList3);
         return rootView;
     }
 
@@ -133,7 +133,7 @@ public class FragmentReport3 extends Fragment implements View.OnClickListener, A
             String arg2 = opdDate.getText().toString();
             String arg3 = opdToDate.getText().toString();
             String arg4 = "";
-            new reportDayAdapter(context,opdResult,listView).execute(arg1,arg2,arg3,arg4);
+            new reportSalesAdapter(context,opdResult,listView).execute(arg1,arg2,arg3,arg4);
         }
     }
 
