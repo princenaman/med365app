@@ -9,7 +9,7 @@
         android:id="@+id/datePickers">
 
         <EditText
-            android:id="@+id/opdDate2"
+            android:id="@+id/opdDate3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -19,7 +19,7 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/opdToDate2"
+            android:id="@+id/opdToDate3"
             android:layout_weight="1"
             android:hint="@string/opdToDate"
             android:gravity="center_horizontal" />
@@ -29,13 +29,13 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/selectSearch2"
+        android:id="@+id/selectSearch3"
         android:layout_below="@+id/datePickers">
 
         <Spinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/typeSelect2"
+            android:id="@+id/typeSelect3"
             android:layout_weight="1"
             android:spinnerMode="dropdown"
             android:entries="@array/type"
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/search"
-            android:id="@+id/opdButton2"
+            android:id="@+id/opdButton3"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -66,7 +66,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/collectionList2"
+        android:id="@+id/collectionList3"
         android:layout_below="@+id/selectSearch"
         android:layout_centerHorizontal="true"
         android:divider="#000000"

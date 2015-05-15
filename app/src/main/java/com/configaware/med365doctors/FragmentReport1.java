@@ -45,6 +45,7 @@ public class FragmentReport1 extends Fragment implements View.OnClickListener, A
     private TextView opdResult;
 
     public FragmentReport1() {
+
     }
 
     /**

@@ -1,31 +1,34 @@
 package com.configaware.med365doctors;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.text.InputType;
+import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-        import android.annotation.SuppressLint;
-        import android.app.DatePickerDialog;
-        import android.content.Context;
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.text.InputType;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.AdapterView;
-        import android.widget.Button;
-        import android.widget.DatePicker;
-        import android.widget.EditText;
-        import android.widget.Spinner;
-        import android.widget.TextView;
-
-        import java.text.SimpleDateFormat;
-        import java.util.Calendar;
-        import java.util.Locale;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Shubham on 5/5/2015.
  */
-
-public class FragmentReport2 extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener{
+public class FragmentReport2 extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -35,12 +38,14 @@ public class FragmentReport2 extends Fragment implements View.OnClickListener, A
     private EditText opdDate,opdToDate;
     private DatePickerDialog opdDateDialog,opdToDateDialog;
     private SimpleDateFormat dateFormatter;
+    private ListView listView;
     private Context context;
     private Spinner spinner;
     private Button button;
     private TextView opdResult;
 
     public FragmentReport2() {
+
     }
 
     /**
@@ -68,21 +73,23 @@ public class FragmentReport2 extends Fragment implements View.OnClickListener, A
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-        opdDate = (EditText) rootView.findViewById(R.id.opdDate);
+        opdDate = (EditText) rootView.findViewById(R.id.opdDate2);
         opdDate.setInputType(InputType.TYPE_NULL);
         opdDate.requestFocus();
-        opdToDate = (EditText) rootView.findViewById(R.id.opdToDate);
+        opdToDate = (EditText) rootView.findViewById(R.id.opdToDate2);
         opdToDate.setInputType(InputType.TYPE_NULL);
         setDateTimeField();
 
-        spinner = (Spinner) rootView.findViewById(R.id.typeSelect);
+        spinner = (Spinner) rootView.findViewById(R.id.typeSelect2);
         spinner.setOnItemSelectedListener(this);
 
-        button = (Button) rootView.findViewById(R.id.opdButton);
+        button = (Button) rootView.findViewById(R.id.opdButton2);
         button.setOnClickListener(this);
 
-        opdResult = (TextView) rootView.findViewById(R.id.opdText);
+        opdResult = (TextView) rootView.findViewById(R.id.opdText2);
+        opdResult.setMovementMethod(new ScrollingMovementMethod());
 
+        listView = (ListView) rootView.findViewById(R.id.collectionList2);
         return rootView;
     }
 
@@ -123,9 +130,10 @@ public class FragmentReport2 extends Fragment implements View.OnClickListener, A
         }
         else if (view == button){
             String arg1 = "collection";
-            String arg2 = opdToDate.getText().toString();
-            String arg3 = opdDate.getText().toString();
+            String arg2 = opdDate.getText().toString();
+            String arg3 = opdToDate.getText().toString();
             String arg4 = "";
+            new reportDayAdapter(context,opdResult,listView).execute(arg1,arg2,arg3,arg4);
         }
     }
 
