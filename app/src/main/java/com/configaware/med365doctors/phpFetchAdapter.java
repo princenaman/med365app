@@ -123,15 +123,19 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             for(int i=0; i<jArray.length();i++){
                 JSONObject json = jArray.getJSONObject(i);
                 s = s +
-                        ""+json.getString("GLOBAL_IP")+"\n"+
+                        //""+json.getString("GLOBAL_IP")+"\n"+
                         ""+json.getString("PARTNER_KEY")+"\n";//+
                         //""+json.getString("PARTNER_COMPANY")+"\n\n";
                 vUserType = json.getString("USER_TYPE_CODE");
-                if(vUserType.equals("30"))
+
+                if(vUserType.equals("30")) {
                     vHospital = "PRAGATI HOSPITAL";
-                else
+                    vIP = "54.66.144.238";
+                }
+                else {
                     vHospital = json.getString("PARTNER_COMPANY");
-                vIP = json.getString("GLOBAL_IP");
+                    vIP = json.getString("GLOBAL_IP");
+                }
                 vPartnerKey=json.getString("PARTNER_KEY");
                 errorFlag = vIP;
             }
