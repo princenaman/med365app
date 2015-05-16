@@ -6,28 +6,30 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:background="@mipmap/log_in"
+    >
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="25dp"
         android:ems="10"
-        android:inputType="textPassword" >
+        android:inputType="textPassword"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/login"
+        android:layout_alignEnd="@+id/login">
     </EditText>
 
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="44dp"
         android:ems="10"
-        android:singleLine="true">
+        android:singleLine="true"
+        android:layout_above="@+id/editText2"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2">
 
         <requestFocus android:layout_width="wrap_content" />
 
@@ -37,28 +39,22 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
+        android:text="@string/Username"
+        android:layout_above="@+id/editText2"
         android:layout_alignParentLeft="true"
-        android:text="@string/Username" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/App"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignParentStart="true"
+        android:visibility="invisible" />
 
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText2"
-        android:layout_alignBottom="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:text="@string/Password" />
+        android:text="@string/Password"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignEnd="@+id/textView1"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -78,8 +74,11 @@
         android:text="Sign In"
         android:id="@+id/login"
         android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:capitalize="words"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
