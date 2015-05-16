@@ -396,6 +396,12 @@ public class MRActivity extends ActionBarActivity implements
             finish();
             return true;
         }
+        if (id == R.id.ehrweb) {
+            Intent intent = new Intent(MRActivity.this,Dashboard.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

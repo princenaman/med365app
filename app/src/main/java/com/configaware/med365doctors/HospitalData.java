@@ -106,6 +106,12 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
             finish();
             return true;
         }
+        if (id == R.id.ehrweb) {
+            Intent intent = new Intent(HospitalData.this,Dashboard.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -148,8 +154,8 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
                     return new FragmentReport2(1,HospitalData.this);
                 case 2:
                     return new FragmentReport3(2,HospitalData.this);
-                case 3:
-                    return new FragmentReport1(3,HospitalData.this);
+                /*case 3:
+                    return new FragmentReport1(3,HospitalData.this);*/
 
             }
             return null;
@@ -158,8 +164,7 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
-            return 4;
+            return 3;
         }
 
         @Override
@@ -172,8 +177,8 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
                     return getString(R.string.title_section2).toUpperCase(l);
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
-                case 3:
-                    return getString(R.string.title_section4).toUpperCase(l);
+                /*case 3:
+                    return getString(R.string.title_section4).toUpperCase(l);*/
             }
             return null;
         }
@@ -213,3 +218,4 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
     }
 
 }
+

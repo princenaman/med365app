@@ -6,6 +6,7 @@ Edits by shubham
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -45,6 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             String arg1 = "login";
             String arg2 = usernameField.getText().toString();
             String arg3 = CFEMD5EncryptionAPI.getEncryptedValue(arg2,passwordField.getText().toString());
+            Log.e("Password",arg3);
             new phpFetchAdapter(MainActivity.this,resultView).execute(arg1, arg2, arg3);
             //resultView.setText(result);
             //getData();

@@ -36,6 +36,10 @@
             android:name=".Tracking"
             android:label="@string/title_activity_tracking" >
         </activity>
+        <activity
+            android:name=".Dashboard"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
     </application>
 
 </manifest>
