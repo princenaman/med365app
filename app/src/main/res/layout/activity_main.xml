@@ -63,7 +63,6 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Result 1"
         android:id="@+id/result"
         android:gravity="center_horizontal"
         android:textSize="20sp"
@@ -71,7 +70,7 @@
         android:layout_toRightOf="@+id/textView9"
         android:layout_toEndOf="@+id/textView9"
         android:layout_marginTop="30dp"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <Button
         android:layout_width="fill_parent"

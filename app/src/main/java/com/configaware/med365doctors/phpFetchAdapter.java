@@ -38,7 +38,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
     private Context context;
     private TextView resultview;
     ProgressDialog progressDialog;
-    String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,ifLocal=null;
+    String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,ifLocal=null,vUserType;
 
     public phpFetchAdapter(Context context,TextView resultView) {
         this.context=context;
@@ -124,14 +124,17 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
                 JSONObject json = jArray.getJSONObject(i);
                 s = s +
                         ""+json.getString("GLOBAL_IP")+"\n"+
-                        ""+json.getString("PARTNER_KEY")+"\n"+
-                        ""+json.getString("PARTNER_COMPANY")+"\n\n";
-                errorFlag=json.getString("PARTNER_COMPANY");
-                vHospital = json.getString("PARTNER_COMPANY");
+                        ""+json.getString("PARTNER_KEY")+"\n";//+
+                        //""+json.getString("PARTNER_COMPANY")+"\n\n";
+                vUserType = json.getString("USER_TYPE_CODE");
+                if(vUserType.equals("30"))
+                    vHospital = "PRAGATI HOSPITAL";
+                else
+                    vHospital = json.getString("PARTNER_COMPANY");
                 vIP = json.getString("GLOBAL_IP");
                 vPartnerKey=json.getString("PARTNER_KEY");
+                errorFlag = vIP;
             }
-
             return (s);
 
         } catch (JSONException e) {
@@ -147,18 +150,16 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         this.resultview.setText(result);
         if(result==null){
             this.resultview.setText("Error in Connection");
-            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
-
         }
         else
             this.resultview.setText(result);
 
         if (errorFlag==null){
             this.resultview.setText("Error in Connection");
-            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
-            Intent intent =new Intent(context, MainActivity.class);
-            context.startActivity(intent);
-            ((Activity)context).finish();
+        }
+        else if (errorFlag.equals("Error"))
+        {
+            this.resultview.setText("Credentials Incorrect or Connection Error");
         }
         else if (ifLocal.equals("opd") || ifLocal.equals("ipd") || ifLocal.equals("tpa") || ifLocal.equals("lic")){
             this.resultview.setText(result);
@@ -166,9 +167,13 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
         {
             this.resultview.setText(result);
-            dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,vPartnerKey,context);
+            dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,vPartnerKey,vUserType,context);
             dbAdapter.insertData();
-            Intent intent =new Intent(context, HospitalData.class);
+            Intent intent;
+            if (vUserType.equals("30"))
+                intent = new Intent(context,MRActivity.class);
+            else
+                intent = new Intent(context, HospitalData.class);
             intent.putExtra("IP",vIP);
             context.startActivity(intent);
             ((Activity)context).finish();
@@ -176,7 +181,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         else if (!errorFlag.equals("Error"))
         {
             this.resultview.setText(result);
-            Intent intent =new Intent(context, HospitalData.class);
+            Intent intent =new Intent(context, MainActivity.class);
             intent.putExtra("IP",vIP);
             context.startActivity(intent);
             ((Activity)context).finish();

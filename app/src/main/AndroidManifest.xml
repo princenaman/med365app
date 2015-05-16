@@ -3,6 +3,7 @@
     package="com.configaware.med365doctors" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -28,8 +29,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Navigation"
+            android:name=".MRActivity"
             android:label="@string/title_activity_navigation" >
+        </activity>
+        <activity
+            android:name=".Tracking"
+            android:label="@string/title_activity_tracking" >
         </activity>
     </application>
 

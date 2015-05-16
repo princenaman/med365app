@@ -147,6 +147,7 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
                     String date = json.getString("ORDER_DATE");
                     String amount = json.getString("AMOUNT");
                     String orders = json.getString("ORDER_NUMBER");
+                    amount = "Rs. "+amount;
 
                     HashMap<String,String> hashMap=new HashMap<String,String>();
                     hashMap.put("DATE",date);

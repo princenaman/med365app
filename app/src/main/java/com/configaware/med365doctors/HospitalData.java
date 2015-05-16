@@ -1,5 +1,6 @@
 package com.configaware.med365doctors;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -92,7 +93,17 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.logout) {
+            dataBaseAdapter dataBaseAdapter = new dataBaseAdapter(getApplicationContext(),"Log Out");
             Toast.makeText(HospitalData.this,"Logged Out",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(HospitalData.this,Splash.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if (id == R.id.track) {
+            Intent intent = new Intent(HospitalData.this,Tracking.class);
+            startActivity(intent);
+            finish();
             return true;
         }
 

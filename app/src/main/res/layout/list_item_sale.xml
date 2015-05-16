@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" >
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:gravity="center_horizontal">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
@@ -12,11 +13,12 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/listDate3"
-            android:layout_weight="1"
-            android:textSize="17sp"
+            android:layout_weight="0.81"
+            android:textSize="15sp"
             android:typeface="serif"
             android:paddingLeft="10dp"
-            android:textColor="#ff000000" />
+            android:textColor="#ff000000"
+            android:gravity="center_vertical" />
 
         <TextView
             android:layout_width="0dp"
@@ -24,31 +26,35 @@
             android:text="New Text"
             android:id="@+id/listOrderTotal"
             android:layout_weight="1"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:typeface="serif"
             android:paddingLeft="10dp"
-            android:textColor="#ff000000" />
+            android:textColor="#ff000000"
+            android:gravity="center_vertical" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/listAmount"
-            android:textSize="17sp"
-            android:typeface="serif" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/descriptionAmt"
-        android:layout_below="@+id/dateOrderName">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="New Text"
+            android:id="@+id/listAmount"
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="#ff000000" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionAmt"
+        android:layout_below="@+id/dateAmountAmount">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
             android:id="@+id/listOrderSales"
-             android:textSize="17sp"
+             android:textSize="15sp"
             android:typeface="serif"
             android:gravity="center_horizontal"
             android:textColor="#ff000000"

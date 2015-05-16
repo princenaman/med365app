@@ -12,30 +12,32 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/listDate2"
-            android:layout_weight="1"
-            android:textSize="17sp"
+            android:layout_weight="0.80"
+            android:textSize="15sp"
             android:typeface="serif"
-            android:paddingLeft="10dp"
-            android:textColor="#ff000000" />
+            android:textColor="#ff000000"
+            android:gravity="center_vertical" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/listOrder"
-            android:layout_weight="1"
-            android:textSize="17sp"
+            android:layout_weight="0.80"
+            android:textSize="15sp"
             android:typeface="serif"
-            android:paddingLeft="10dp"
-            android:textColor="#ff000000" />
+            android:textColor="#ff000000"
+            android:gravity="center_vertical" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/listName"
-            android:textSize="17sp"
-            android:typeface="serif" />
+            android:textSize="15sp"
+            android:typeface="serif"
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -49,11 +51,10 @@
         android:text="New Text"
         android:id="@+id/listDescription"
 
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:typeface="serif"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:textColor="#ff000000"
-        android:paddingBottom="5dp"
         android:layout_weight="1" />
 
         <TextView
@@ -61,11 +62,10 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/listToalAmount"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:typeface="serif"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:paddingBottom="5dp"
+            android:gravity="center_vertical"
             android:textColor="#ff000000" />
 
         <TextView
@@ -73,11 +73,10 @@
             android:layout_height="wrap_content"
             android:text="New"
             android:id="@+id/listAmountPaid"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:typeface="serif"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:paddingBottom="5dp"
+            android:gravity="center_vertical"
             android:textColor="#ff000000" />
     </LinearLayout>
 </RelativeLayout>

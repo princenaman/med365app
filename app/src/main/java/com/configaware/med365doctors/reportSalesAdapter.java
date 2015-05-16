@@ -148,10 +148,10 @@ public class reportSalesAdapter extends AsyncTask<String,Void,String>{
                     String orders = json.getString("order_number");
                     String orderTotal=json.getString("ORDER_TOTAL");
                     String amountPaid = json.getString("amount");
-
-
-
-
+                    if(amountPaid.equals("null"))
+                        amountPaid="0";
+                    amountPaid = "Paid "+amountPaid;
+                    orderTotal = "Total "+orderTotal;
 
                     HashMap<String,String> hashMap=new HashMap<String,String>();
                     hashMap.put("DATE",date);

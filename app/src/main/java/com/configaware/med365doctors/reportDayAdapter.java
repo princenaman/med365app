@@ -148,11 +148,15 @@ public class reportDayAdapter extends AsyncTask<String,Void,String>{
                     String date = json.getString("ORDER_DATE");
                     String name=json.getString("CUSTOMER_NAME");
                     String description=json.getString("ORDER_DESCRIPTION");
+                    description = description.substring(description.indexOf(".") + 1);
+                    description = description.replaceAll(",.*", " ");
+                    description = "Dr."+description;
                     String amountPaid = json.getString("AMOUNT");
                     String orderTotal=json.getString("ORDER_TOTAL");
-
-
-
+                    if(amountPaid.equals("null"))
+                        amountPaid="0";
+                    amountPaid = "Paid Rs. "+amountPaid;
+                    orderTotal = "Total Rs. "+orderTotal;
 
                     HashMap<String,String> hashMap=new HashMap<String,String>();
                     hashMap.put("DATE",date);
