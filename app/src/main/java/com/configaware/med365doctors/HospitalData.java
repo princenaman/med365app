@@ -35,12 +35,19 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    String vUserType = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_data);
-
+        dataBaseAdapter mydb = new dataBaseAdapter(getApplicationContext());
+        vUserType = mydb.getvUserType();
+        /*if (vUserType.equals("30"))
+        {
+            MRActivity mrActivity = new MRActivity();
+            mrActivity.someMethod();
+        }*/
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -80,7 +87,12 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_hospital_data, menu);
+        if(vUserType.equals("30"))
+        {
+            getMenuInflater().inflate(R.menu.menu_splash, menu);
+        }else {
+            getMenuInflater().inflate(R.menu.menu_hospital_data, menu);
+        }
         return true;
     }
 
@@ -100,7 +112,7 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
             finish();
             return true;
         }
-        if (id == R.id.track) {
+        if (id == R.id.track && vUserType!=null) {
             Intent intent = new Intent(HospitalData.this,Tracking.class);
             startActivity(intent);
             finish();

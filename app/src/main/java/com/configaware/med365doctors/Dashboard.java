@@ -1,8 +1,10 @@
 package com.configaware.med365doctors;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +22,23 @@ public class Dashboard extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         webView = (WebView) findViewById(R.id.dashboard);
-        String url = "http://ehr.med365.in/med365/";
+        dataBaseAdapter mydb=new dataBaseAdapter(this);
+        String password="";
+        String userlogin="";
+        if(!mydb.isEmpty())
+        {
+            Log.e("isEmpty", "Not Empty");
+            Cursor result = mydb.fetchData();
+            if (result!=null){
+                result.moveToFirst();
+                do{
+                    userlogin = result.getString(1);
+                    password = result.getString(2);
+                    Log.e("Local Data", result.getString(1)+" "+result.getString(2));
+                }while (result.moveToNext());
+            }
+        }
+        String url = "http://ehr.med365.in/med365/AuthenticateUser?userlogin="+userlogin+"&password="+password+"";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.setWebViewClient(new SwAWebClient());

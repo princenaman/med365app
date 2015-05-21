@@ -23,6 +23,8 @@ import com.google.android.gms.location.LocationServices;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Getting Location Updates.
@@ -85,19 +87,32 @@ public class MRActivity extends ActionBarActivity implements
      */
     protected String mLastUpdateTime;
 
+    Bundle savedInstanceState;
+
+    private static final ScheduledExecutorService worker =
+            Executors.newSingleThreadScheduledExecutor();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mr_activity);
-
+        savedInstanceState = this.savedInstanceState;
+        dataBaseAdapter mydb = new dataBaseAdapter(getApplicationContext());
+        String vName = mydb.getvName();
         // Locate the UI widgets.
         mStartUpdatesButton = (Button) findViewById(R.id.start_updates_button);
         mStopUpdatesButton = (Button) findViewById(R.id.stop_updates_button);
         mLatitudeTextView = (TextView) findViewById(R.id.latitude_text);
         mLongitudeTextView = (TextView) findViewById(R.id.longitude_text);
         mLastUpdateTimeTextView = (TextView) findViewById(R.id.last_update_time_text);
+        TextView mrText = (TextView) findViewById(R.id.mrText);
+        mrText.setText("Hello "+vName+"\n" +
+                "Check Hospitals Daily Reports or Check your Logs.");
+        someMethod();
+    }
 
-        mRequestingLocationUpdates = false;
+    public void someMethod() {
+        mRequestingLocationUpdates = true;
         mLastUpdateTime = "";
 
         // Update values using data stored in the Bundle.
@@ -105,6 +120,7 @@ public class MRActivity extends ActionBarActivity implements
 
         // Kick off the process of building a GoogleApiClient and requesting the LocationServices
         // API.
+
         buildGoogleApiClient();
     }
 
@@ -193,6 +209,9 @@ public class MRActivity extends ActionBarActivity implements
             setButtonsEnabledState();
             startLocationUpdates();
         }
+        Intent intent = new Intent(MRActivity.this,HospitalData.class);
+        startActivity(intent);
+        finish();
     }
 
     /**
@@ -343,7 +362,7 @@ public class MRActivity extends ActionBarActivity implements
         mLastUpdateTime = DateFormat.getTimeInstance().format(new Date());
         updateUI();
         Toast.makeText(this, getResources().getString(R.string.location_updated_message),
-                Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT);
     }
 
     @Override

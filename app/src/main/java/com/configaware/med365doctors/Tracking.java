@@ -76,6 +76,12 @@ public class Tracking extends ActionBarActivity {
             finish();
             return true;
         }
+        if (id == R.id.ehrweb) {
+            Intent intent = new Intent(Tracking.this,Dashboard.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -90,7 +90,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             HttpClient httpclient = new DefaultHttpClient(params1);
             HttpResponse response = httpclient.execute(httppost);
             if(response.getStatusLine().getStatusCode() != 200) //which means there is no connection
-                return null;
+                return "No Internet";
             HttpEntity entity1 = response.getEntity();
             isr = entity1.getContent();
         }
@@ -127,9 +127,10 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
                         ""+json.getString("PARTNER_KEY")+"\n";//+
                         //""+json.getString("PARTNER_COMPANY")+"\n\n";
                 vUserType = json.getString("USER_TYPE_CODE");
+                Log.e("User Type",vUserType);
 
                 if(vUserType.equals("30")) {
-                    vHospital = "PRAGATI HOSPITAL";
+                    vHospital = "";
                     vIP = "54.66.144.238";
                 }
                 else {
@@ -142,7 +143,6 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             return (s);
 
         } catch (JSONException e) {
-            // TODO: handle exception
             Log.e("log_tag", "Error Parsing Data "+e.toString());
             return null;
         }
@@ -151,7 +151,6 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String result){
         progressDialog.dismiss();
-        this.resultview.setText(result);
         if(result==null){
             this.resultview.setText("Error in Connection");
         }
@@ -164,9 +163,6 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
         else if (errorFlag.equals("Error"))
         {
             this.resultview.setText("Credentials Incorrect or Connection Error");
-        }
-        else if (ifLocal.equals("opd") || ifLocal.equals("ipd") || ifLocal.equals("tpa") || ifLocal.equals("lic")){
-            this.resultview.setText(result);
         }
         else if(!errorFlag.equals("Error") && !ifLocal.equals("Local Login"))
         {

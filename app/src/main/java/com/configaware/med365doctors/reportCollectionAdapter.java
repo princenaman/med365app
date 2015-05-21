@@ -44,7 +44,7 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
     private TextView resultview;
     private ListView listView;
     ProgressDialog progressDialog;
-    String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,ifLocal=null;
+    String errorFlag=null,vName,vPassword,vIP,vHospital,vPartnerKey,vUserType,ifLocal=null;
     Cursor cursor;
     public reportCollectionAdapter(Context context, TextView resultView, ListView listView) {
         this.context=context;
@@ -77,9 +77,9 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
         arg3 = (String)params[2];
         if(params.length>3 )
             arg4 = (String)params[3];
-      /*  ifLocal = arg1;
-        vName=arg2;
-        vPassword=arg3; */
+          /*  ifLocal = arg1;
+            vName=arg2;
+            vPassword=arg3; */
 
         String result = "";
 
@@ -93,6 +93,10 @@ public class reportCollectionAdapter extends AsyncTask<String,Void,String> {
             nameValuePairs.add(new BasicNameValuePair("dateFrom", arg2));
             nameValuePairs.add(new BasicNameValuePair("dateTo", arg3));
             nameValuePairs.add(new BasicNameValuePair("partnerKey", vPartnerKey));
+            dataBaseAdapter mydb = new dataBaseAdapter(context);
+            vUserType = mydb.getvUserType();
+            if (vUserType.equals("30"))
+                nameValuePairs.add(new BasicNameValuePair("userType", vUserType));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpParams params1 = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(params1, 15000);

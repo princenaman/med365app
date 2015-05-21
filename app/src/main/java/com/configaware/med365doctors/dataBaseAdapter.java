@@ -40,7 +40,7 @@ public class dataBaseAdapter {
 
     public void initDB()
     {
-        Log.e("Try","Create Table");
+        Log.e("Try", "Create Table");
         try {
             myDatabase = context.openOrCreateDatabase("MED365.db", Context.MODE_PRIVATE, null);
             myDatabase.execSQL("CREATE TABLE IF NOT EXISTS doctors (_id INTEGER PRIMARY KEY AUTOINCREMENT, doctor_name VARCHAR(50), doctor_password  VARCHAR(100), doctor_hospital  VARCHAR(100),partner_key  VARCHAR(100), doctor_ip  VARCHAR(50), doctor_type  VARCHAR(50))");
@@ -70,6 +70,7 @@ public class dataBaseAdapter {
         return false;
     }
 
+
     public void emptyData()
     {
         try {
@@ -80,4 +81,27 @@ public class dataBaseAdapter {
         }
     }
 
+    public String getvUserType() {
+        Cursor result = myDatabase.rawQuery("SELECT * FROM doctors limit 1",null);
+        if (result!=null){
+            result.moveToFirst();
+            do{
+                vUserType = result.getString(6);
+                Log.e("User Type", result.getString(6));
+            }while (result.moveToNext());
+        }
+        return vUserType;
+    }
+
+    public String getvName() {
+        Cursor result = myDatabase.rawQuery("SELECT * FROM doctors limit 1",null);
+        if (result!=null){
+            result.moveToFirst();
+            do{
+                vName = result.getString(1);
+                Log.e("User Name", result.getString(1));
+            }while (result.moveToNext());
+        }
+        return vName;
+    }
 }
