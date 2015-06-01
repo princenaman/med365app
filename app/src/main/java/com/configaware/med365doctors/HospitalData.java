@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -227,6 +228,17 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
             View rootView = inflater.inflate(R.layout.fragment_hospital_data, container, false);
             return rootView;
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(event.getAction() == KeyEvent.ACTION_DOWN){
+
+        Intent intent = new Intent(HospitalData.this,NavDrawer.class);
+        startActivity(intent);
+        finish();
+        return true;
+            }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

@@ -48,5 +48,36 @@
     <string name="location_updated_message">Location updated</string>
     <string name="title_activity_tracking">MED365 Tracking System</string>
     <string name="title_activity_dashboard">Dashboard</string>
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Home</item>
+        <item >Reports</item>
+        <item >Track MR</item>
+        <item >DashBoard</item>
+        <item >Generic Medicines</item>
+        <item >Search Doctors</item>
+        <item ></item>
+        <item ></item>
+    </string-array>
 
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@mipmap/ic_home</item>
+        <item>@mipmap/report</item>
+        <item>@mipmap/trackmr</item>
+        <item>@mipmap/menu</item>
+        <item>@mipmap/gen_meds</item>
+        <item>@mipmap/search_doctors</item>
+        <item></item>
+        <item></item>
+    </array>
+
+    <string name="title_activity_nav_drawer">MED365</string>
+    <string name="desc_list_item_icon">MED365</string>
+
+    <string name="aboutUs">About Us</string>
+    <string name="contactUs">Contact Us</string>
+    <string name="logOut">Log Out</string>
+    <string name="shareApp">Share the app</string>
 </resources>

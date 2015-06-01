@@ -152,7 +152,8 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String result){
         progressDialog.dismiss();
         if(result==null){
-            this.resultview.setText("Error in Connection");
+            //this.resultview.setText("Error in Connection");
+                Toast.makeText(context, "Please Check Your Internet Connectivity ",Toast.LENGTH_LONG).show();
         }
         else
             this.resultview.setText(result);
@@ -171,17 +172,21 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             dbAdapter.insertData();
             Intent intent;
             if (vUserType.equals("30"))
-                intent = new Intent(context,MRActivity.class);
+                //intent = new Intent(context,MRActivity.class);
+                intent = new Intent(context,NavDrawer.class);
             else
-                intent = new Intent(context, HospitalData.class);
+                //intent = new Inteintent = new Intent(context,NavDrawer.class);nt(context, HospitalData.class);
+                intent = new Intent(context,NavDrawer.class);
+
             intent.putExtra("IP",vIP);
-            context.startActivity(intent);
+           context.startActivity(intent);
             ((Activity)context).finish();
         }
         else if (!errorFlag.equals("Error"))
         {
             this.resultview.setText(result);
-            Intent intent =new Intent(context, MainActivity.class);
+           // Intent intent =new Intent(context, MainActivity.class);
+            Intent intent =new Intent(context, NavDrawer.class);
             intent.putExtra("IP",vIP);
             context.startActivity(intent);
             ((Activity)context).finish();

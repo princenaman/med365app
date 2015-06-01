@@ -17,6 +17,7 @@ public class Dashboard extends ActionBarActivity {
 
     WebView webView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class Dashboard extends ActionBarActivity {
                 }while (result.moveToNext());
             }
         }
-        String url = "http://ehr.med365.in/med365/AuthenticateUser?userlogin="+userlogin+"&password="+password+"";
+        String url = "http://ehr.med365.in/med365/AuthenticateUser?userlogin="+userlogin+"&password="+password+"&singlesignon=true";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.setWebViewClient(new SwAWebClient());

@@ -40,6 +40,10 @@
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard" >
         </activity>
+        <activity
+            android:name=".NavDrawer"
+            android:label="@string/title_activity_nav_drawer" >
+        </activity>
     </application>
 
 </manifest>

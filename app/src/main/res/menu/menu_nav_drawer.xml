@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".NavDrawer">
+    <item
+        android:id="@+id/action_aboutUs"
+        android:title="@string/aboutUs"
+        android:icon="@mipmap/aboutus"
+        app:showAsAction="never"
+    />
+    <item
+        android:id="@+id/action_home"
+        android:title="@string/aboutUs"
+        android:icon="@mipmap/home_action"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/action_contactUs"
+        android:title="@string/contactUs"
+        app:showAsAction="never"
+        android:icon="@mipmap/contact"
+        />
+
+    <item
+        android:id="@+id/action_logOut"
+        android:title="@string/logOut"
+        android:icon="@mipmap/logout"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/action_shareApp"
+        android:title="@string/shareApp"
+        android:icon="@mipmap/share"
+        app:showAsAction="never"
+        />
+
+
+</menu>
