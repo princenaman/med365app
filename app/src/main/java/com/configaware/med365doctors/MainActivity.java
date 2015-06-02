@@ -23,11 +23,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.testlogin);
         usernameField = (EditText)findViewById(R.id.editText1);
         passwordField = (EditText)findViewById(R.id.editText2);
         resultView = (TextView) findViewById(R.id.result);
-        login = (Button) findViewById(R.id.login);
+        login = (Button) findViewById(R.id.bLogin);
         login.setOnClickListener(this);
     }
     @Override

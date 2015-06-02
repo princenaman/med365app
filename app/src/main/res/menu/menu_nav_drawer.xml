@@ -7,12 +7,7 @@
         android:icon="@mipmap/aboutus"
         app:showAsAction="never"
     />
-    <item
-        android:id="@+id/action_home"
-        android:title="@string/aboutUs"
-        android:icon="@mipmap/home_action"
-        app:showAsAction="always"
-        />
+
 
     <item
         android:id="@+id/action_contactUs"

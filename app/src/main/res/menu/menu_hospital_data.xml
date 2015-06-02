@@ -2,11 +2,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.configaware.med365doctors.HospitalData">
-    <item android:id="@+id/track" android:title="Track MR"
-        android:orderInCategory="100" app:showAsAction="ifRoom" />
-    <item android:id="@+id/ehrweb" android:title="Dashboard"
-        android:orderInCategory="100" app:showAsAction="ifRoom" />
-    <item android:id="@+id/logout" android:title="Log Out"
-        android:orderInCategory="100" app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_aboutUs"
+        android:title="@string/aboutUs"
+        android:icon="@mipmap/aboutus"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/action_home"
+        android:title="@string/aboutUs"
+        android:icon="@mipmap/home_action"
+        app:showAsAction="always"
+        />
 
+    <item
+        android:id="@+id/action_contactUs"
+        android:title="@string/contactUs"
+        app:showAsAction="never"
+        android:icon="@mipmap/contact"
+        />
+
+    <item
+        android:id="@+id/action_logOut"
+        android:title="@string/logOut"
+        android:icon="@mipmap/logout"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/action_shareApp"
+        android:title="@string/shareApp"
+        android:icon="@mipmap/share"
+        app:showAsAction="never"
+        />
 </menu>

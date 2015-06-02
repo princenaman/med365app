@@ -17,6 +17,7 @@
         </activity>
         <activity
             android:name=".HospitalData"
+            android:icon="@mipmap/report"
             android:label="@string/title_activity_hospital_data" >
         </activity>
         <activity
@@ -33,16 +34,34 @@
             android:label="@string/title_activity_navigation" >
         </activity>
         <activity
+            android:name=".AboutUs"
+            android:label="@string/aboutUs" >
+        </activity>
+        <activity
             android:name=".Tracking"
+            android:icon="@mipmap/trackmr"
             android:label="@string/title_activity_tracking" >
         </activity>
         <activity
             android:name=".Dashboard"
+            android:icon="@mipmap/menu"
             android:label="@string/title_activity_dashboard" >
         </activity>
         <activity
             android:name=".NavDrawer"
             android:label="@string/title_activity_nav_drawer" >
+        </activity>
+        <activity
+            android:name=".SearchDoctors"
+            android:label="@string/title_activity_search_doctors" >
+        </activity>
+        <activity
+            android:name=".FindDoctors"
+            android:label="@string/title_activity_find_doctors" >
+        </activity>
+        <activity
+            android:name=".GenericMedicines"
+            android:label="@string/title_activity_generic_medicines" >
         </activity>
     </application>
 

@@ -46,7 +46,7 @@
     <string name="last_update_time_label">Last location update time: </string>
 
     <string name="location_updated_message">Location updated</string>
-    <string name="title_activity_tracking">MED365 Tracking System</string>
+    <string name="title_activity_tracking">Track MR</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -63,7 +63,7 @@
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item>@mipmap/ic_home</item>
+        <item>@mipmap/home_action</item>
         <item>@mipmap/report</item>
         <item>@mipmap/trackmr</item>
         <item>@mipmap/menu</item>
@@ -73,6 +73,12 @@
         <item></item>
     </array>
 
+    <string-array name="places">
+        <item>Select Your Location</item>
+        <item>Hyderabad</item>
+        <item>Jaipur</item>
+    </string-array>
+    <string name="location">Select Your Location</string>
     <string name="title_activity_nav_drawer">MED365</string>
     <string name="desc_list_item_icon">MED365</string>
 
@@ -80,4 +86,7 @@
     <string name="contactUs">Contact Us</string>
     <string name="logOut">Log Out</string>
     <string name="shareApp">Share the app</string>
+    <string name="title_activity_search_doctors">SearchDoctors</string>
+    <string name="title_activity_find_doctors">Find Doctos</string>
+    <string name="title_activity_generic_medicines">GenericMedicines</string>
 </resources>

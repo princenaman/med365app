@@ -285,11 +285,11 @@ public class NavDrawer extends ActionBarActivity {
                 // builder.setIcon(R.drawable.icon_me);
                 builder.show();
                 return true;
-            case R.id.action_home:
-                /*Intent myIntent = new Intent(NavDrawer.this, NavDrawer.class);
+          /*  case R.id.action_home:
+                Intent myIntent = new Intent(NavDrawer.this, NavDrawer.class);
                 NavDrawer.this.startActivity(myIntent);
-                finish();*/
-                return true;
+                finish();
+                return true;*/
 
             case R.id.action_contactUs:
                 builder = new AlertDialog.Builder(this);
@@ -394,7 +394,10 @@ public class NavDrawer extends ActionBarActivity {
 
                 break;
             case 5:
-
+                intent = new Intent(NavDrawer.this,SearchDoctors.class);
+                intent.putExtra("Title","Search Doctors");
+                startActivity(intent);
+                finish();
                 break;
             case 6:
 
