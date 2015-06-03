@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -18,6 +19,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private EditText usernameField,passwordField;
     private TextView resultView;
     private Button login;
+    private ImageButton mSearchDoctor;
 
 
     @Override
@@ -28,7 +30,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         passwordField = (EditText)findViewById(R.id.editText2);
         resultView = (TextView) findViewById(R.id.result);
         login = (Button) findViewById(R.id.bLogin);
+        login = (Button) findViewById(R.id.bLogin);
         login.setOnClickListener(this);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

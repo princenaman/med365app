@@ -48,7 +48,7 @@ public class GenericMedicines extends ActionBarActivity implements View.OnClickL
 
    @Override
     public void onClick(View v) {
-     /*   if(v == searchBtn){
+    /*    if(v == searchBtn){
             String text = searchquery.getText().toString();
             Intent intent = new Intent(GenericMedicines.this, SearchResultsActivity.class);
             intent.putExtra("selected-item", text);

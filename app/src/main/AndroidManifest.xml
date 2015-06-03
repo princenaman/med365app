@@ -63,6 +63,10 @@
             android:name=".GenericMedicines"
             android:label="@string/title_activity_generic_medicines" >
         </activity>
+        <activity
+            android:name=".SearchResultsActivity"
+            android:label="@string/title_activity_search_results" >
+        </activity>
     </application>
 
 </manifest>

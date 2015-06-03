@@ -89,4 +89,5 @@
     <string name="title_activity_search_doctors">SearchDoctors</string>
     <string name="title_activity_find_doctors">Find Doctos</string>
     <string name="title_activity_generic_medicines">GenericMedicines</string>
+    <string name="title_activity_search_results">SearchResultsActivity</string>
 </resources>

@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:background="@mipmap/log_in"
-    >
+    android:id="@+id/loginlayout">
 
 
     <LinearLayout
@@ -88,13 +88,13 @@
         <Button
 
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:text="LOG IN"
             android:id="@+id/bLogin"
             android:background="#ffd33131"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:layout_marginTop="10dp"
             android:textSize="25dp"
             android:letterSpacing="1" />
