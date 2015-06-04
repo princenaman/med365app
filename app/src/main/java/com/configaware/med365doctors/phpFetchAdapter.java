@@ -128,15 +128,8 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
                         //""+json.getString("PARTNER_COMPANY")+"\n\n";
                 vUserType = json.getString("USER_TYPE_CODE");
                 Log.e("User Type",vUserType);
-
-                if(vUserType.equals("30")) {
-                    vHospital = "";
-                    vIP = "54.66.144.238";
-                }
-                else {
-                    vHospital = json.getString("PARTNER_COMPANY");
-                    vIP = json.getString("GLOBAL_IP");
-                }
+                vHospital = json.getString("PARTNER_COMPANY");
+                vIP = "54.66.144.238";
                 vPartnerKey=json.getString("PARTNER_KEY");
                 errorFlag = vIP;
             }

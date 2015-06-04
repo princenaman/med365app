@@ -33,7 +33,12 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Highlight;
 import com.github.mikephil.charting.utils.PercentFormatter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 
 public class NavDrawer extends ActionBarActivity {
@@ -57,10 +62,11 @@ public class NavDrawer extends ActionBarActivity {
 
 
     private PieChart mPieChart;
-    private float[] yData={5,10,15,30,40};;
-    private String[] xData={"Cash","Credit","Cheque","MediClaim","Insurance"};
+    private float[] yData;
+    private String[] xData={"Cash","Credit Card","Debit Card","Reward Points","Mediclaim"};
     RelativeLayout PieChartLayout,PieChartLayout2;
-    String vUserType = null;
+    String vUserType = null,jsonData;
+    float cash,credit,debit,reward,mediclaim,total;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -83,6 +89,40 @@ public class NavDrawer extends ActionBarActivity {
             // on first time display view for first nav item
             displayView(0);
         }
+
+        try {
+            jsonData = new chartAdapter(this).execute().get();
+            Log.e("Data",jsonData);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONArray jArray = new JSONArray(jsonData);
+
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONObject json = jArray.getJSONObject(i);
+                cash = (float) json.getDouble("Cash");
+                credit = (float) json.getDouble("Credit");
+                debit = (float) json.getDouble("Debit");
+                reward = (float) json.getDouble("Reward");
+                mediclaim = (float) json.getDouble("Mediclaim");
+                total = cash+credit+debit+reward+mediclaim;
+                cash = returnPercentage((float) json.getDouble("Cash"));
+                credit = returnPercentage((float) json.getDouble("Credit"));
+                debit = returnPercentage((float) json.getDouble("Debit"));
+                reward = returnPercentage((float) json.getDouble("Reward"));
+                mediclaim = returnPercentage((float) json.getDouble("Mediclaim"));
+                Log.e("Chart Values", "Cash"+cash+" - Credit"+credit+" - Debit"+debit+" - Reward"+reward+" - Mediclaim"+mediclaim);
+            }
+        }catch (JSONException e)
+        {
+            Log.e("Error","Couldn't parse JSON "+e);
+        }
+        yData = new float[]{cash, credit, debit, reward, mediclaim};
+
         showPieChart();
        // ((ViewGroup)PieChartLayout.getParent()).removeView(PieChartLayout);
 
@@ -185,8 +225,6 @@ public class NavDrawer extends ActionBarActivity {
 
         mPieChart.invalidate();
 
-
-
     }
 
     private void showNavigationDrawer() {
@@ -253,9 +291,6 @@ public class NavDrawer extends ActionBarActivity {
 
     }
 
-    /**
-     * Slide menu item click listener
-     * */
     private class SlideMenuClickListener implements
             ListView.OnItemClickListener {
         @Override
@@ -355,9 +390,6 @@ public class NavDrawer extends ActionBarActivity {
         }
     }
 
-    /* *
-     * Called when invalidateOptionsMenu() is triggered
-     */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
@@ -366,9 +398,6 @@ public class NavDrawer extends ActionBarActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    /**
-     * Diplaying fragment view for selected nav drawer list item
-     * */
     private void displayView(int position) {
         // update the main content by replacing fragments
         Fragment fragment = null;
@@ -429,11 +458,6 @@ public class NavDrawer extends ActionBarActivity {
         getSupportActionBar().setTitle(mTitle);
     }
 
-    /**
-     * When using the ActionBarDrawerToggle, you must call it during
-     * onPostCreate() and onConfigurationChanged()...
-     */
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -448,6 +472,9 @@ public class NavDrawer extends ActionBarActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-
-
+    public float returnPercentage(float input)
+    {
+        float value = (input * 100)/(float) total;
+        return value;
+    }
 }
