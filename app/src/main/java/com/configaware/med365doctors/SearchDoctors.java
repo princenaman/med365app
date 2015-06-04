@@ -1,8 +1,9 @@
 package com.configaware.med365doctors;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +15,7 @@ import android.widget.Spinner;
 public class SearchDoctors extends ActionBarActivity {
 
     private Spinner location;
-    private Button btn;
+    private Button btn,btnLogin;
     private EditText searchquery;
 
     @Override
@@ -24,6 +25,7 @@ public class SearchDoctors extends ActionBarActivity {
         searchquery = (EditText) findViewById(R.id.searchquery);
         location = (Spinner) findViewById(R.id.location);
         btn = (Button) findViewById(R.id.btn_search);
+        btnLogin = (Button) findViewById(R.id.buttonLogin);
         location = (Spinner) findViewById(R.id.location);
         location.setOnItemSelectedListener(new CustomOnItemSelectedListener());
         btn.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +41,18 @@ public class SearchDoctors extends ActionBarActivity {
                     intent.putExtra("searchquery", searchquery_text);
                     intent.putExtra("location", location_text);
                     startActivity(intent);
+                }
+            }
+        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v==btnLogin)
+                {
+                    Intent intent = new Intent(SearchDoctors.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
                 }
             }
         });
@@ -59,11 +73,53 @@ public class SearchDoctors extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+        // Handle action bar actions click
+        switch (item.getItemId()) {
+            case R.id.action_aboutUs:
+                AlertDialog.Builder builder;
+             /*   AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setTitle(" MED365 ");
+                builder.setMessage(" Under construction ");
+                // builder.setIcon(R.drawable.icon_me);
+                builder.show();
+                return true;*/
+                Intent myIntent = new Intent(SearchDoctors.this, AboutUs.class);
+                myIntent.putExtra("Activity_name", "SearchDoctors");
+                startActivity(myIntent);
+                finish();
+                return true;
+            case R.id.action_home:
+
+
+            case R.id.action_contactUs:
+                builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setTitle(" MED365 ");
+                builder.setMessage(" Under construction ");
+                // builder.setIcon(R.drawable.icon_me);
+                builder.show();
+                return true;
+
+
+
+            case R.id.action_shareApp:
+                //Share the App
+                String shareBody = "Take Health Care with you wherever you go.\n";
+                shareBody += "http://bit.ly/tXhJ3j";
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Now Health Data comes in all sizes in your pocket!");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }

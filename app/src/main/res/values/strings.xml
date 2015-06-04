@@ -54,10 +54,7 @@
         <item >Reports</item>
         <item >Track MR</item>
         <item >DashBoard</item>
-        <item >Generic Medicines</item>
-        <item >Search Doctors</item>
-        <item ></item>
-        <item ></item>
+
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -67,10 +64,7 @@
         <item>@mipmap/report</item>
         <item>@mipmap/trackmr</item>
         <item>@mipmap/menu</item>
-        <item>@mipmap/gen_meds</item>
-        <item>@mipmap/search_doctors</item>
-        <item></item>
-        <item></item>
+
     </array>
 
     <string-array name="places">

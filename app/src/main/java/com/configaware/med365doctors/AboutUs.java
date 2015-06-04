@@ -2,43 +2,80 @@ package com.configaware.med365doctors;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 public class AboutUs extends Activity {
-
+    String value;
+    TextView mContent;
+    String contentString="";
+    LinearLayout layoutMiddle,layoutEnd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus);
-        TextView title = (TextView) findViewById(R.id.textView20);
-        TextView content = (TextView) findViewById(R.id.textView21);
-        title.setText("MED365");
-        content.setText("• Staying healthy is better ever then before\n" +
-                "• Find Doctors and Practitioners near you\n" +
-                "• Book Appointments on the go\n" +
-                "• Get appointment notifications\n" +
-                "• Get e-Prescriptions from Doctors\n" +
-                "• Identifying, uploading and maintaining patient vitals, test reports\n" +
-                "• Captures and manages clinical documents and notes\n" +
-                "• Managing patient vitals with intelligent and configurable graphs\n" +
-                "• Cloud-based System, 24x7 access; from any location and device\n" +
-                "• Viewing tracking and modifying patient visits, clinical diagnostics and orders/invoices\n" +
-                "• Business data and overall collection revenue of the practitioner in (configurable) graphs\n" +
-                "• Seamless billing system\n" +
-                "• Patient care/Customer Relationship Management\n" +
-                "• Find alternatives and Generic Medicines\n" +
-                "• Compare medicine prices\n" +
-                "Need help? Please tell us more about the issue. http://med365.in/");
+        Bundle extras = getIntent().getExtras();
+        mContent=(TextView)findViewById(R.id.content);
+        if (extras != null) {
+             value = extras.getString("Activity_name");
+        }
+        contentString="Med365 Practitioner’s system allows practitioners to focus on delivering excellent care to your patients. Designed for long-term patient-provider relationship  & continuity of care,we provide following services:\n" +
+                "• MED365 PRACTITIONER'S SYSTEM\n" +
+                "• MED365 VISION\n"+
+                "• MED365 EHR";
+        mContent.setText(contentString);
+        layoutMiddle=(LinearLayout)findViewById(R.id.middle);
+        layoutEnd=(LinearLayout)findViewById(R.id.end);
+
+        layoutMiddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://www.google.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
+        layoutEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://http://www.med365.in/doctors/";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+     /*   tv1=(TextView)findViewById(R.id.TextView1);
+        tv2=(TextView)findViewById(R.id.TextView2);
+        tv1.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String url = "http://www.google.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+        tv2.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AboutUs.this,"TV2",Toast.LENGTH_SHORT).show();
+            }
+        });*/
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         return true;
     }
 
@@ -55,7 +92,34 @@ public class AboutUs extends Activity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        startActivity(new Intent(AboutUs.this, NavDrawer.class));
-        finish();
+        switch(value)
+        {
+            case "NavDrawer":
+                startActivity(new Intent(AboutUs.this, NavDrawer.class));
+                finish();
+                break;
+            case "Dashboard":
+                startActivity(new Intent(AboutUs.this, Dashboard.class));
+                finish();
+                break;
+            case "HospitalData":
+                startActivity(new Intent(AboutUs.this, HospitalData.class));
+                finish();
+                break;
+            case "Tracking":
+                startActivity(new Intent(AboutUs.this, Tracking.class));
+                finish();
+                break;
+            case "SearchDoctors":
+                startActivity(new Intent(AboutUs.this, SearchDoctors.class));
+                finish();
+                break;
+
+            default:
+                startActivity(new Intent(AboutUs.this, SearchDoctors.class));
+                finish();
+
+        }
+
     }
 }

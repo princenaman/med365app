@@ -73,21 +73,19 @@ public class Tracking extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.action_aboutUs:
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setCancelable(true);
-                builder.setTitle(" MED365 ");
-                builder.setMessage(" Under construction ");
-                // builder.setIcon(R.drawable.icon_me);
-                builder.show();
+                Intent myIntent = new Intent(Tracking.this, AboutUs.class);
+                myIntent.putExtra("Activity_name","Tracking");
+                startActivity(myIntent);
+                finish();
                 return true;
             case R.id.action_home:
-                Intent myIntent = new Intent(Tracking.this, NavDrawer.class);
+                 myIntent = new Intent(Tracking.this, NavDrawer.class);
                 Tracking.this.startActivity(myIntent);
                 finish();
                 return true;
 
             case R.id.action_contactUs:
-                builder = new AlertDialog.Builder(this);
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
                 builder.setTitle(" MED365 ");
                 builder.setMessage(" Under construction ");
@@ -107,7 +105,7 @@ public class Tracking extends ActionBarActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 dataBaseAdapter dataBaseAdapter = new dataBaseAdapter(getApplicationContext(), "Log Out");
                                 Toast.makeText(Tracking.this, "Logged Out", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Tracking.this, Splash.class);
+                                Intent intent = new Intent(Tracking.this, SearchDoctors.class);
                                 startActivity(intent);
                                 finish();
                                 dialog.cancel();

@@ -57,7 +57,7 @@ public class NavDrawer extends ActionBarActivity {
 
 
     private PieChart mPieChart;
-    private float[] yData={5,10,15,30,40};
+    private float[] yData={5,10,15,30,40};;
     private String[] xData={"Cash","Credit","Cheque","MediClaim","Insurance"};
     RelativeLayout PieChartLayout,PieChartLayout2;
 
@@ -78,16 +78,16 @@ public class NavDrawer extends ActionBarActivity {
             // on first time display view for first nav item
             displayView(0);
         }
-        showPieChart(PieChartLayout);
+        showPieChart();
        // ((ViewGroup)PieChartLayout.getParent()).removeView(PieChartLayout);
 
 
 
     }
-    private void showPieChart(RelativeLayout relativeLayout) {
+    private void showPieChart( ) {
 
         mPieChart=new PieChart(this);
-        relativeLayout.addView(mPieChart);
+        PieChartLayout.addView(mPieChart);
 
 
         mPieChart.setUsePercentValues(true);
@@ -132,6 +132,7 @@ public class NavDrawer extends ActionBarActivity {
     }
 
     private void addDataForPieChart() {
+
         ArrayList<Entry> yValues=new ArrayList<Entry>();
         for(int i=0; i <yData.length;i++)
             yValues.add(new Entry(yData[i],i));
@@ -196,21 +197,21 @@ public class NavDrawer extends ActionBarActivity {
         // adding nav drawer items to array
         // Home
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-        // AMS
+        // Collections
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        // Outlook
+        // Track MR
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // MCD
+        // Dashboard
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
         // Phone
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+     /*   navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
         // Taxi
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
         //navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
         // Restaurant
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
         // Events
-       // navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+       // navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));*/
 
 
         // Recycle the typed array
@@ -277,19 +278,21 @@ public class NavDrawer extends ActionBarActivity {
         // Handle action bar actions click
         switch (item.getItemId()) {
             case R.id.action_aboutUs:
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder;
+             /*   AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
                 builder.setTitle(" MED365 ");
                 builder.setMessage(" Under construction ");
-                // builder.setIcon(R.drawable.icon_me);
+                // builder.r(R.drawable.icon_me);
                 builder.show();
-                return true;
-          /*  case R.id.action_home:
-                Intent myIntent = new Intent(NavDrawer.this, NavDrawer.class);
-                NavDrawer.this.startActivity(myIntent);
-                finish();
                 return true;*/
+                Intent myIntent = new Intent(NavDrawer.this, AboutUs.class);
+                myIntent.putExtra("Activity_name","NavDrawer");
+                startActivity(myIntent);
+                finish();
+                return true;
+            case R.id.action_home:
+
 
             case R.id.action_contactUs:
                 builder = new AlertDialog.Builder(this);
@@ -312,7 +315,7 @@ public class NavDrawer extends ActionBarActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 dataBaseAdapter dataBaseAdapter = new dataBaseAdapter(getApplicationContext(),"Log Out");
                                 Toast.makeText(NavDrawer.this,"Logged Out",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(NavDrawer.this,Splash.class);
+                                Intent intent = new Intent(NavDrawer.this,SearchDoctors.class);
                                 startActivity(intent);
                                 finish();
                                 dialog.cancel();
@@ -394,11 +397,11 @@ public class NavDrawer extends ActionBarActivity {
 
                 break;
             case 5:
-                intent = new Intent(NavDrawer.this,SearchDoctors.class);
+               /* intent = new Intent(NavDrawer.this,SearchDoctors.class);
                 intent.putExtra("Title","Search Doctors");
                 startActivity(intent);
                 finish();
-                break;
+                break;*/
             case 6:
 
                 break;

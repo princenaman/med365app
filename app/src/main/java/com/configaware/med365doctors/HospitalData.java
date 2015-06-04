@@ -109,21 +109,20 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
         switch (item.getItemId()) {
             case R.id.action_aboutUs:
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setCancelable(true);
-                builder.setTitle(" MED365 ");
-                builder.setMessage(" Under construction ");
-                // builder.setIcon(R.drawable.icon_me);
-                builder.show();
+                Intent myIntent = new Intent(HospitalData.this, AboutUs.class);
+                myIntent.putExtra("Activity_name","HospitalData");
+                startActivity(myIntent);
+                finish();
                 return true;
+
             case R.id.action_home:
-                Intent myIntent = new Intent(HospitalData.this, NavDrawer.class);
+                 myIntent = new Intent(HospitalData.this, NavDrawer.class);
                 HospitalData.this.startActivity(myIntent);
                 finish();
                 return true;
 
             case R.id.action_contactUs:
-                builder = new AlertDialog.Builder(this);
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
                 builder.setTitle(" MED365 ");
                 builder.setMessage(" Under construction ");
@@ -143,7 +142,7 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
                             public void onClick(DialogInterface dialog, int id) {
                                 dataBaseAdapter dataBaseAdapter = new dataBaseAdapter(getApplicationContext(),"Log Out");
                                 Toast.makeText(HospitalData.this,"Logged Out",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(HospitalData.this,Splash.class);
+                                Intent intent = new Intent(HospitalData.this,SearchDoctors.class);
                                 startActivity(intent);
                                 finish();
                                 dialog.cancel();

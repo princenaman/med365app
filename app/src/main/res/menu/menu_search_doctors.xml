@@ -4,4 +4,28 @@
     tools:context="com.configaware.med365doctors.SearchDoctors">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/action_aboutUs"
+        android:title="@string/aboutUs"
+        android:icon="@mipmap/aboutus"
+        app:showAsAction="never"
+        />
+
+
+    <item
+        android:id="@+id/action_contactUs"
+        android:title="@string/contactUs"
+        app:showAsAction="never"
+        android:icon="@mipmap/contact"
+        />
+
+
+    <item
+        android:id="@+id/action_shareApp"
+        android:title="@string/shareApp"
+        android:icon="@mipmap/share"
+        app:showAsAction="never"
+        />
+
+
 </menu>

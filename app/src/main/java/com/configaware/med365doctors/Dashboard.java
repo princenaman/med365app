@@ -89,13 +89,15 @@ public class Dashboard extends ActionBarActivity {
 
         switch (item.getItemId()) {
             case R.id.action_aboutUs:
-                Intent intent = new Intent(Dashboard.this, AboutUs.class);
-                startActivity(intent);
+                Intent myIntent = new Intent(Dashboard.this, AboutUs.class);
+                myIntent.putExtra("Activity_name","Dashboard");
+                startActivity(myIntent);
                 finish();
-
                 return true;
+
+
             case R.id.action_home:
-                Intent myIntent = new Intent(Dashboard.this, NavDrawer.class);
+                 myIntent = new Intent(Dashboard.this, NavDrawer.class);
                 Dashboard.this.startActivity(myIntent);
                 finish();
                 return true;
@@ -122,7 +124,7 @@ public class Dashboard extends ActionBarActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 dataBaseAdapter dataBaseAdapter = new dataBaseAdapter(getApplicationContext(), "Log Out");
                                 Toast.makeText(Dashboard.this, "Logged Out", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Dashboard.this, Splash.class);
+                                Intent intent = new Intent(Dashboard.this, SearchDoctors.class);
                                 startActivity(intent);
                                 finish();
                                 dialog.cancel();
