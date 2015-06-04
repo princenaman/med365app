@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -41,6 +40,10 @@ public class updateLocation extends AsyncTask<String,Void,String> {
         this.resultview=resultView;
     }
 
+    public updateLocation(Context context){
+        this.context = context;
+    }
+
     public updateLocation(Context context, TextView resultView, String activityName) {
         this.context=context;
         this.resultview=resultView;
@@ -49,12 +52,6 @@ public class updateLocation extends AsyncTask<String,Void,String> {
 
     protected void onPreExecute(){
         super.onPreExecute();
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Please wait while we connect!!");
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(false);
-        if(!activityName.equals("Splash"))
-            progressDialog.show();
     }
 
     @Override
@@ -64,6 +61,7 @@ public class updateLocation extends AsyncTask<String,Void,String> {
         arg2 = (String)params[1];
         arg3 = (String)params[2];
         arg4 = (String)params[3];
+        Log.e("Received",arg1+ " " +arg2+ " " +arg3+ " " +arg4);
         ifLocal = arg1;
         vName=arg2;
         vPassword=arg3;
@@ -103,7 +101,6 @@ public class updateLocation extends AsyncTask<String,Void,String> {
                 sb.append(line + "\n");
             }
             isr.close();
-
             result=sb.toString();
             Log.e("Result", "Data: " + sb.toString());
         }
@@ -115,12 +112,10 @@ public class updateLocation extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result){
-        progressDialog.dismiss();
         if(result==null){
-            this.resultview.setText("Error in Connection");
-            Toast.makeText(context,"No Internet",Toast.LENGTH_SHORT).show();
+            Log.e("Error","No Internet");
         }
         else
-            this.resultview.setText(result);
+            Log.e("Location","Updated");
     }
 }

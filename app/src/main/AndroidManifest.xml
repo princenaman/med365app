@@ -30,10 +30,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MRActivity"
-            android:label="@string/title_activity_navigation" >
-        </activity>
-        <activity
             android:name=".AboutUs"
             android:label="@string/aboutUs" >
         </activity>
@@ -67,6 +63,8 @@
             android:name=".SearchResultsActivity"
             android:label="@string/title_activity_search_results" >
         </activity>
+        <service  android:enabled="true"
+            android:name=".BackgroundLocationService" />
     </application>
 
 </manifest>

@@ -171,12 +171,7 @@ public class phpFetchAdapter extends AsyncTask<String,Void,String> {
             dataBaseAdapter dbAdapter =new dataBaseAdapter(vName,vPassword,vIP,vHospital,vPartnerKey,vUserType,context);
             dbAdapter.insertData();
             Intent intent;
-            if (vUserType.equals("30"))
-                //intent = new Intent(context,MRActivity.class);
-                intent = new Intent(context,NavDrawer.class);
-            else
-                //intent = new Inteintent = new Intent(context,NavDrawer.class);nt(context, HospitalData.class);
-                intent = new Intent(context,NavDrawer.class);
+            intent = new Intent(context,NavDrawer.class);
 
             intent.putExtra("IP",vIP);
            context.startActivity(intent);

@@ -52,9 +52,9 @@
     <string-array name="nav_drawer_items">
         <item >Home</item>
         <item >Reports</item>
-        <item >Track MR</item>
         <item >DashBoard</item>
-
+        <item >Generic Medicines</item>
+        <item >Track MR</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -62,9 +62,9 @@
     <array name="nav_drawer_icons">
         <item>@mipmap/home_action</item>
         <item>@mipmap/report</item>
-        <item>@mipmap/trackmr</item>
         <item>@mipmap/menu</item>
-
+        <item>@mipmap/gen_meds</item>
+        <item>@mipmap/trackmr</item>
     </array>
 
     <string-array name="places">
@@ -80,8 +80,8 @@
     <string name="contactUs">Contact Us</string>
     <string name="logOut">Log Out</string>
     <string name="shareApp">Share the app</string>
-    <string name="title_activity_search_doctors">SearchDoctors</string>
-    <string name="title_activity_find_doctors">Find Doctos</string>
-    <string name="title_activity_generic_medicines">GenericMedicines</string>
-    <string name="title_activity_search_results">SearchResultsActivity</string>
+    <string name="title_activity_search_doctors">Search Doctors</string>
+    <string name="title_activity_find_doctors">Find Doctors</string>
+    <string name="title_activity_generic_medicines">Generic Medicines</string>
+    <string name="title_activity_search_results">Search Results</string>
 </resources>

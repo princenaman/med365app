@@ -60,7 +60,7 @@ public class NavDrawer extends ActionBarActivity {
     private float[] yData={5,10,15,30,40};;
     private String[] xData={"Cash","Credit","Cheque","MediClaim","Insurance"};
     RelativeLayout PieChartLayout,PieChartLayout2;
-
+    String vUserType = null;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -68,10 +68,15 @@ public class NavDrawer extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer);
+
+        dataBaseAdapter mydb = new dataBaseAdapter(getApplicationContext());
+        vUserType = mydb.getvUserType();
+        if (vUserType.equals("30")){
+            startService();
+        }
+
         PieChartLayout=(RelativeLayout)findViewById(R.id.PieChartXMLLayout);
        // PieChartLayout2=(RelativeLayout)findViewById(R.id.PieChartXMLLayout2);
-
-
 
         showNavigationDrawer();
         if (savedInstanceState == null) {
@@ -81,9 +86,14 @@ public class NavDrawer extends ActionBarActivity {
         showPieChart();
        // ((ViewGroup)PieChartLayout.getParent()).removeView(PieChartLayout);
 
-
-
     }
+
+    // Method to start the service
+    public void startService() {
+        Log.e("Location", "Started");
+        startService(new Intent(getBaseContext(), BackgroundLocationService.class));
+    }
+
     private void showPieChart( ) {
 
         mPieChart=new PieChart(this);
@@ -199,20 +209,13 @@ public class NavDrawer extends ActionBarActivity {
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
         // Collections
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        // Track MR
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         // Dashboard
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+        // Generic Meds
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-        // Phone
-     /*   navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // Taxi
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-        //navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
-        // Restaurant
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-        // Events
-       // navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));*/
-
+        // Track MR
+        if(!vUserType.equals("30"))
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -381,32 +384,23 @@ public class NavDrawer extends ActionBarActivity {
                 startActivity(intent);
                 finish();
                 break;
+
             case 2:
-                intent = new Intent(NavDrawer.this,Tracking.class);
-                intent.putExtra("Title","Track MR");
-                startActivity(intent);
-                finish();
-                break;
-            case 3:
                 intent = new Intent(NavDrawer.this,Dashboard.class);
                 intent.putExtra("Title","Dashboard");
                 startActivity(intent);
                 finish();
                 break;
-            case 4:
+
+            case 3:
 
                 break;
-            case 5:
-               /* intent = new Intent(NavDrawer.this,SearchDoctors.class);
-                intent.putExtra("Title","Search Doctors");
+
+            case 4:
+                intent = new Intent(NavDrawer.this,Tracking.class);
+                intent.putExtra("Title","Track MR");
                 startActivity(intent);
                 finish();
-                break;*/
-            case 6:
-
-                break;
-            case 7:
-
                 break;
 
             default:

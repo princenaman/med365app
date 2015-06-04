@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,19 +25,8 @@ import java.util.Locale;
 
 public class HospitalData extends ActionBarActivity implements ActionBar.TabListener {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     ViewPager mViewPager;
     String vUserType = null;
 
@@ -44,17 +34,11 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_data);
-        dataBaseAdapter mydb = new dataBaseAdapter(getApplicationContext());
-        vUserType = mydb.getvUserType();
-        /*if (vUserType.equals("30"))
-        {
-            MRActivity mrActivity = new MRActivity();
-            mrActivity.someMethod();
-        }*/
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+        dataBaseAdapter mydb = new dataBaseAdapter(getApplicationContext());
+        vUserType = mydb.getvUserType();
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -86,16 +70,17 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
+    // Method to start the service
+    public void startService() {
+        Log.e("Location","Started");
+        startService(new Intent(getBaseContext(), BackgroundLocationService.class));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        if(vUserType.equals("30"))
-        {
-            getMenuInflater().inflate(R.menu.menu_splash, menu);
-        }else {
             getMenuInflater().inflate(R.menu.menu_hospital_data, menu);
-        }
+
         return true;
     }
 
