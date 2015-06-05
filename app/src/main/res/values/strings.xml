@@ -84,4 +84,5 @@
     <string name="title_activity_find_doctors">Search results</string>
     <string name="title_activity_generic_medicines">Generic Medicines</string>
     <string name="title_activity_search_results">Search Results</string>
+    <string name="title_activity_search_medicine">Generic Meds</string>
 </resources>

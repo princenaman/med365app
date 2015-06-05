@@ -126,7 +126,7 @@ public class SearchDoctors extends ActionBarActivity {
             case R.id.action_shareApp:
                 //Share the App
                 String shareBody = "Take Health Care with you wherever you go.\n";
-                shareBody += "http://bit.ly/tXhJ3j";
+                shareBody += "http://med365.in";
 
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");

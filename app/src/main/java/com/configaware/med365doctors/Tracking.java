@@ -119,7 +119,7 @@ public class Tracking extends ActionBarActivity {
             case R.id.action_shareApp:
                 //Share the App
                 String shareBody = "Now Health Data comes in all sizes in your pocket!Take Health Care with you wherever you go.\n";
-                shareBody += "http://bit.ly/tXhJ3j";
+                shareBody += "http://med365.in";
 
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");

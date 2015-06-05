@@ -325,7 +325,7 @@ public class NavDrawer extends ActionBarActivity {
                 builder.show();
                 return true;*/
                 Intent myIntent = new Intent(NavDrawer.this, AboutUs.class);
-                myIntent.putExtra("Activity_name","NavDrawer");
+                myIntent.putExtra("Activity_name", "NavDrawer");
                 startActivity(myIntent);
                 finish();
                 return true;
@@ -364,7 +364,7 @@ public class NavDrawer extends ActionBarActivity {
             case R.id.action_shareApp:
                 //Share the App
                 String shareBody="Take Health Care with you wherever you go.\n";
-                shareBody+="http://bit.ly/tXhJ3j";
+                shareBody += "http://med365.in";
 
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
@@ -411,9 +411,12 @@ public class NavDrawer extends ActionBarActivity {
                 break;
 
             case 3:
-
+                intent = new Intent(NavDrawer.this,SearchMedicine.class);
+                intent.putExtra("Title","Search Medicine");
+                startActivity(intent);
+                finish();
                 break;
-
+            
             case 4:
                 intent = new Intent(NavDrawer.this,Tracking.class);
                 intent.putExtra("Title","Track MR");

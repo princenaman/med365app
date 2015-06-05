@@ -63,8 +63,15 @@
             android:name=".SearchResultsActivity"
             android:label="@string/title_activity_search_results" >
         </activity>
-        <service  android:enabled="true"
-            android:name=".BackgroundLocationService" />
+
+        <service
+            android:name=".BackgroundLocationService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".SearchMedicine"
+            android:label="@string/title_activity_search_medicine" >
+        </activity>
     </application>
 
 </manifest>
