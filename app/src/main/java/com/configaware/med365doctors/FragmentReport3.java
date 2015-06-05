@@ -14,15 +14,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -40,7 +36,7 @@ public class FragmentReport3 extends Fragment implements View.OnClickListener, A
     private SimpleDateFormat dateFormatter;
     private ListView listView;
     private Context context;
-    private Spinner spinner;
+    //private Spinner spinner;
     private Button button;
     private TextView opdResult;
 
@@ -80,8 +76,8 @@ public class FragmentReport3 extends Fragment implements View.OnClickListener, A
         opdToDate.setInputType(InputType.TYPE_NULL);
         setDateTimeField();
 
-        spinner = (Spinner) rootView.findViewById(R.id.typeSelect3);
-        spinner.setOnItemSelectedListener(this);
+       // spinner = (Spinner) rootView.findViewById(R.id.typeSelect3);
+        //spinner.setOnItemSelectedListener(this);
 
         button = (Button) rootView.findViewById(R.id.opdButton3);
         button.setOnClickListener(this);

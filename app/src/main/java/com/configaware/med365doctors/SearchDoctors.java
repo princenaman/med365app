@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 
@@ -17,6 +18,7 @@ public class SearchDoctors extends ActionBarActivity {
     private Spinner location;
     private Button btn,btnLogin;
     private EditText searchquery;
+    ImageView ivLogIn,ivAboutUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,9 @@ public class SearchDoctors extends ActionBarActivity {
         searchquery = (EditText) findViewById(R.id.searchquery);
         location = (Spinner) findViewById(R.id.location);
         btn = (Button) findViewById(R.id.btn_search);
+        ivLogIn=(ImageView)findViewById(R.id.ivLogin);
+        ivAboutUs=(ImageView)findViewById(R.id.ivAboutUs);
+
         btnLogin = (Button) findViewById(R.id.buttonLogin);
         location = (Spinner) findViewById(R.id.location);
         location.setOnItemSelectedListener(new CustomOnItemSelectedListener());
@@ -44,6 +49,32 @@ public class SearchDoctors extends ActionBarActivity {
                 }
             }
         });
+       ivLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v==ivLogIn)
+                {
+                    Intent intent = new Intent(SearchDoctors.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+            }
+        });
+        ivAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v==ivAboutUs)
+                {
+                    Intent intent = new Intent(SearchDoctors.this, AboutUs.class);
+                    intent.putExtra("Activity_name", "SearchDoctors");
+                    startActivity(intent);
+                    finish();
+
+                }
+            }
+        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,18 +121,6 @@ public class SearchDoctors extends ActionBarActivity {
                 startActivity(myIntent);
                 finish();
                 return true;
-            case R.id.action_home:
-
-
-            case R.id.action_contactUs:
-                builder = new AlertDialog.Builder(this);
-                builder.setCancelable(true);
-                builder.setTitle(" MED365 ");
-                builder.setMessage(" Under construction ");
-                // builder.setIcon(R.drawable.icon_me);
-                builder.show();
-                return true;
-
 
 
             case R.id.action_shareApp:

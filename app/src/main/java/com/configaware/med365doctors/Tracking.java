@@ -84,14 +84,6 @@ public class Tracking extends ActionBarActivity {
                 finish();
                 return true;
 
-            case R.id.action_contactUs:
-               AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setCancelable(true);
-                builder.setTitle(" MED365 ");
-                builder.setMessage(" Under construction ");
-                // builder.setIcon(R.drawable.icon_me);
-                builder.show();
-                return true;
 
             case R.id.action_logOut:
                 //Logout

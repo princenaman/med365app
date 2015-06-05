@@ -46,7 +46,7 @@ public class AboutUs extends Activity {
         layoutEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://http://www.med365.in/doctors/";
+                String url = "http://www.med365.in/doctors";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 startActivity(i);

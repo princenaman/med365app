@@ -32,7 +32,7 @@
         android:id="@+id/selectSearch"
         android:layout_below="@+id/datePickers">
 
-        <Spinner
+       <!-- <Spinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/typeSelect"
@@ -40,7 +40,7 @@
             android:spinnerMode="dropdown"
             android:entries="@array/type"
             android:prompt="@string/spinner_title"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal" />-->
 
         <Button
             android:layout_width="0dp"

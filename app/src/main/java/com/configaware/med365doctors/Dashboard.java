@@ -102,7 +102,7 @@ public class Dashboard extends ActionBarActivity {
                 finish();
                 return true;
 
-            case R.id.action_contactUs:
+            /*case R.id.action_contactUs:
                 AlertDialog.Builder builder;
                 builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
@@ -110,7 +110,7 @@ public class Dashboard extends ActionBarActivity {
                 builder.setMessage(" Under construction ");
                 // builder.setIcon(R.drawable.icon_me);
                 builder.show();
-                return true;
+                return true;*/
 
             case R.id.action_logOut:
                 //Logout

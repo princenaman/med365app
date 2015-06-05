@@ -80,8 +80,8 @@
     <string name="contactUs">Contact Us</string>
     <string name="logOut">Log Out</string>
     <string name="shareApp">Share the app</string>
-    <string name="title_activity_search_doctors">Search Doctors</string>
-    <string name="title_activity_find_doctors">Find Doctors</string>
+    <string name="title_activity_search_doctors">Search your Doctors!</string>
+    <string name="title_activity_find_doctors">Search results</string>
     <string name="title_activity_generic_medicines">Generic Medicines</string>
     <string name="title_activity_search_results">Search Results</string>
 </resources>

@@ -15,12 +15,7 @@
         app:showAsAction="always"
         />
 
-    <item
-        android:id="@+id/action_contactUs"
-        android:title="@string/contactUs"
-        app:showAsAction="never"
-        android:icon="@mipmap/contact"
-        />
+
 
     <item
         android:id="@+id/action_logOut"

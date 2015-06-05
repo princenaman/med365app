@@ -329,17 +329,6 @@ public class NavDrawer extends ActionBarActivity {
                 startActivity(myIntent);
                 finish();
                 return true;
-            case R.id.action_home:
-
-
-            case R.id.action_contactUs:
-                builder = new AlertDialog.Builder(this);
-                builder.setCancelable(true);
-                builder.setTitle(" MED365 ");
-                builder.setMessage(" Under construction ");
-                // builder.setIcon(R.drawable.icon_me);
-                builder.show();
-                return true;
 
             case R.id.action_logOut:
                 //Logout

@@ -99,14 +99,14 @@ public class HospitalData extends ActionBarActivity implements ActionBar.TabList
                 finish();
                 return true;
 
-            case R.id.action_contactUs:
+            /*case R.id.action_contactUs:
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(true);
                 builder.setTitle(" MED365 ");
                 builder.setMessage(" Under construction ");
                 // builder.setIcon(R.drawable.icon_me);
                 builder.show();
-                return true;
+                return true;*/
 
             case R.id.action_logOut:
                 //Logout

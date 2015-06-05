@@ -5,14 +5,7 @@
     android:paddingLeft="3dp"
     android:paddingRight="3dp">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#fff"
-        android:fillViewport="false"
-        android:id="@+id/scrollview"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+
 
         <RelativeLayout
             android:orientation="horizontal"
@@ -20,25 +13,24 @@
             android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+
             android:background="@mipmap/bg_searchdoctors"
-            >
+            android:id="@+id/relativesearch">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/linearLayoutsearch"
-                android:background="#666"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="98dp">
+                android:layout_marginTop="120dp">
 
                 <RelativeLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginTop="10dp"
-                    android:background="@mipmap/search_back"
                     android:layout_marginRight="10dp">
 
                     <LinearLayout
@@ -99,7 +91,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="20dp" />
 
             </LinearLayout>
 
@@ -109,14 +101,105 @@
                 android:text="MED365 LOGIN"
                 android:id="@+id/buttonLogin"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/linearLayoutsearch"
                 android:background="@color/button_login"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:visibility="visible"
+                android:layout_below="@+id/linearLayoutsearch" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/linearLayoutsearch"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:id="@+id/ivLogin"
+                            android:background="@mipmap/icon_doctor_login"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="MED365 Login"
+                            android:id="@+id/tvLogin"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:clickable="true"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:id="@+id/imageView6"
+                            android:background="@mipmap/icon_med"
+                            android:minWidth="64dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="Generic Medicines"
+                            android:id="@+id/textView3"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:minWidth="64dp">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:id="@+id/ivAboutUs"
+                            android:background="@mipmap/icon_about_us"
+                            android:layout_weight="1"
+                            android:clickable="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="About Us"
+                            android:id="@+id/tvAboutUs"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_gravity="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
-    </ScrollView>
+
 
 </RelativeLayout>
